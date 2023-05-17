@@ -1,0 +1,122 @@
+---
+title: "Lab 12"
+date: "10/05/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Research project
+
+For international students, many programs offer a language camp in the weeks before students begin their graduate degrees, with the hope that it will help students be more prepared in some classes. You're interested in evaluating the effectiveness of a hypothetical language camp program. Does attending the camp cause higher grades in classes? This program is not randomized and it's not mandatory—anyone can decide to sign up (or not!), which means you have selection bias and confounding to worry about.
+
+So now what? 
+
+## Walk through the causal inference pipeline
+
+### First, what is the estimand? 
+Have a clear idea of what it is that we want to measure.
+Maybe ask ourselves questions such as, is there literature that expects certain effects?
+Are there results out there that surprised me? 
+or maybe this is more of an exploratory analysis phase, and you can list the estimands that could be of interest.
+
+### Second, thinking about the data
+How will I gather data?
+Will the data be generated via an experimental design, was there an experiment already done, maybe a natural experiment, or would the only available data be purely observational? 
+
+### Three, contemplaiting the data generation process
+Draw out the DAG that you consider best explains the data generation process. 
+
+### Fourth, Identification strategy!
+Confounders? Colliders? Mediators? What are we controlling for or not controlling for? 
+
+### Fourth continued, Effect identification strategy!
+Fixed effects? Matching? Propecity scores? Diff-in-Diff? Wait it was already randomized we're all good? 
+ATE? CATE? ITE?
+
+### Finaly, Evaluate
+Should we run a sensitivity analysis?
+
+
+
+
+## Ok let's give it a go
+
+**Step 1**
+
+Estimand. The effect of `treatment` on `outcome`. 
+
+**Step 2**
+Data. Our avbailable variables are `gre`,`gpa`, `camp`, and `grade`. 
+
+**Step 3: DAG**
+
+We'll think about a DAG with just four nodes. 
+
+```{r}
+library(dagitty)
+library(ggdag)
+library(ggplot2)
+
+language_camp_dag <- dagify(grade ~ camp + gpa + gre,
+                        camp ~ gpa + gre,
+                        gre ~ gpa,
+                        outcome = "grade",
+                        exposure = "camp",
+                        coords = list(x = c(camp = 1, gpa = 2, gre = 3, grade = 4),
+                                      y = c(camp = 1, gpa = 2, gre = 2, grade = 1)))
+
+ggdag_status(language_camp_dag) +
+  theme_dag() +
+  guides(color = "none")  # Turn off legend
+```
+
+**Part 4**
+
+Students' GRE scores and undergraduate GPAs confound both the choice to enroll in the camp and final class grades. Additionally, undergraduate degrees help cause GRE scores.
+
+*We will generate syntetic data for this example*
+
+```{r}
+
+library(scales)
+
+# 1. GPA is associated with GRE scores
+# 2. Camp (binary) is associated with undergraduate GPA and GRE scores. Calculate a camp score and then a camp binary variable from it. 
+# 3. Final grade is caused by language camp, undergraduate GPA, and GRE scores
+
+gpa <- rnorm(100, mean = 2.5,sd = 1.5)
+e_gre <- rnorm(100, mean = 5, sd = 5)
+gre <- 140 + gpa*10 + e_gre
+gre_r<-rescale(gre, to = c(100, 170))
+
+e_camp_score <- rnorm(100, mean= 50, sd= 20)
+camp_score <- e_camp_score + 5*gpa + gre_r/5
+camp_score_r <- rescale(camp_score, to = c(0, 100))
+
+```
+
+**More part 4: Specify how these nodes are measured**
+
+See if you can find the effect. Run two models:
+
+- `grade ~ camp`: This is the naive, unadjusted, correlation-is-not-causation estimate. It's wrong.
+
+- `grade ~ camp + gpa + gre`: This is the adjusted estimate. 
+
+(Also adjust for GPA and GRE with inverse probability weighting to see if the ATE for `camp` still holds. This is entirely optional.)
+
+```{r}
+# Specify the models 
+
+# lm( ~ )
+
+```
+
+ATE = 
+
+**Part 5**
+
+Evaluation
