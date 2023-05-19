@@ -61,6 +61,10 @@ ggdag_status(simplified_tested_relationship) +
 
 ## High Level DAGS (George Unick1, Daniel Rosenblum, Sarah Mars & Daniel Ciccarone)
 
+Unick1, Rosenblum, Mars and Ciccarone review literature on causes for high risk of heroin overdoses. They distinguish three types of variables that should be considered and that are subsequently added in the simplified DAG developed above:
+### 1. Individual Factors (IF)
+### 2. Risk Environment (RE)
+### 3. Social Environment (SE)
 
 ```{r}
 simplified_assumed_relationship <- dagify(DID ~ HOD + RE + SE,
