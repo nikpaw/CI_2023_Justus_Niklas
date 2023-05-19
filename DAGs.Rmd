@@ -1,0 +1,291 @@
+---
+title: "CI"
+author: "Niklas Pawelzik"
+date: "2023-05-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dagitty)
+library(ggdag)
+library(ggplot2)
+```
+
+
+## High Level DAGS
+
+
+```{r}
+simplified_assumed_relationship <- dagify(DID ~ HOD + RE + SE,
+                                          NFNM ~ HOD + RE + SE,
+                                          HOD ~ RE + SE + IF + OP + P + DC,
+                                          RE ~ IF + SE,
+                                          DC ~ OP + RE + IF, # drug components other than heroin
+                                          P ~ OP + RE + IF, # purity/dose of heroin
+                                          OP ~ L,
+                                          outcome = "DID",
+                                          exposure = "OP",
+                                          coords = list(x = c(L = -2,
+                                                              OP = 0,
+                                                              RE = 4, SE = 6, IF = 2,
+                                                              P = 2.67,
+                                                              DC = 5.34,
+                                                              NFNM = 10,
+                                                              HOD = 8,
+                                                              DID = 10), 
+                                                        y =  c(L = 0,
+                                                              OP = 0,
+                                                              RE = 4, SE = 5, IF = 3,
+                                                              P = 1,
+                                                              DC = 1,
+                                                              NFNM = 1,
+                                                              HOD = 0,
+                                                              DID = 0)))
+
+ggdag_status(simplified_assumed_relationship) +
+  theme_dag() +
+  guides(color = "none")
+
+# L = Legality
+# OP = Opioid Provision
+# RE = Risk Environment
+# SE = Social Environment
+# IF = Individual Factors
+# P = Purity
+# DC = Drug Components
+# NFNM = Non-Fatal Near Misses
+# HOD = Heroin Overdose
+# DID = Drug Induced Death 
+
+```
+
+## Proximal causes and individual factors
+
+"The proximal causes and individual factors associated with heroin-related overdose (HOD) are
+well known [1,3,6,7]. Heroin overdoses are frequently due to polydrug use (PDU), specifically when heroin is combined
+with central nervous system depressants such as alcohol and benzodiazepines that contribute to respiratory failure
+[8]. A lack of experience (LOE) in heroin use and rapid changes in tolerance due to incarceration (I), relapse following drug
+treatment (R) or infrequent heroin use (IHU) have been linked to higher rates of overdose [6,9–11]"
+
+```{r}
+assumed_relationship_IF <- dagify(DID ~ HOD + RE + SE,
+                                          NFNM ~ HOD + RE + SE,
+                                          HOD ~ RE + SE + PDU + LOE + I + IHU + R + OP + P + DC,
+                                          RE ~ SE + PDU + LOE + I + IHU + R + OP + P + DC,
+                                          DC ~ OP + RE + PDU + IHU + I + R, # drug components other than heroin
+                                          P ~ OP + RE + IHU + I + R, # purity/dose of heroin
+                                          OP ~ L,
+                                          I ~ L,
+                                          outcome = "DID",
+                                          exposure = "OP",
+                                          latent = c("PDU", "LOE", "I", "IHU", "R"), # used to indicate Individual Factors
+                                          coords = list(x = c(L = -2,
+                                                              OP = 0,
+                                                              RE = 4, SE = 6,
+                                                              I = 1, R = 2, PDU = 3, IHU = 4, LOE = 5,
+                                                              P = 2.67,
+                                                              DC = 5.34,
+                                                              NFNM = 10,
+                                                              HOD = 8,
+                                                              DID = 10), 
+                                                        y =  c(L = 0,
+                                                              OP = 0,
+                                                              RE = 4, SE = 5,
+                                                              I= -1, R = -2, PDU = -3, IHU = -4, LOE = -5,
+                                                              P = 1,
+                                                              DC = 1,
+                                                              NFNM = 1,
+                                                              HOD = 0,
+                                                              DID = 0)))
+
+ggdag_status(assumed_relationship_IF) +
+  theme_dag() +
+  guides(color = "none")
+
+# L = Legality
+# OP = Opioid Provision
+# RE = Risk Environment
+# SE = Social Environment
+# IF = Individual Factors
+# P = Purity
+# DC = Drug Components
+# NFNM = Non-Fatal Near Misses
+# HOD = Heroin Overdose
+# DID = Drug Induced Death 
+# PDU = Polydrug Use
+# LOE = Lack of Experience
+# I = Incarceration
+# IHU = Infrequent Heroin Use
+# R = Relapse Following Drug Treatment
+
+```
+
+## Social Causes
+
+"Moving upstream, social causes such as poverty (EB), home-lessness (HL), sexual minority status (SM) or other forms of social
+exclusion (OSE) have also been linked to increased risk of drug overdose [12–15]"
+
+```{r}
+assumed_relationship_SC <- dagify(DID ~ HOD + RE + HL + OSE,
+                                          NFNM ~ HOD + RE,
+                                          HOD ~ RE + IF + OP + P + DC + EB + HL + SM + OSE,
+                                          RE ~ IF + HL + EB + SM + OSE,
+                                          DC ~ OP + RE + IF, # drug components other than heroin
+                                          P ~ OP + RE + IF, # purity/dose of heroin
+                                          OP ~ L,
+                                          HL ~ EB + SM + OSE + IF + HOD,
+                                          EB ~ SM + OSE + IF,
+                                          outcome = "DID",
+                                          exposure = "OP",
+                                          latent = c("EB", "HL", "SM", "OSE"),  # used to indicate social environment
+                                          coords = list(x = c(L = -2,
+                                                              OP = 0,
+                                                              RE = 4, IF = 2,
+                                                              EB = 1, HL = 2.5,  SM = 3, OSE = 4,
+                                                              P = 2.67,
+                                                              DC = 5.34,
+                                                              NFNM = 10,
+                                                              HOD = 8,
+                                                              DID = 10), 
+                                                        y =  c(L = 0,
+                                                              OP = 0,
+                                                              RE = 4, IF = 3,
+                                                              EB = -1, HL = -2,  SM = -5, OSE = -8,
+                                                              P = 1,
+                                                              DC = 1,
+                                                              NFNM = 1,
+                                                              HOD = 0,
+                                                              DID = 0)))
+
+ggdag_status(assumed_relationship_SC) +
+  theme_dag() +
+  guides(color = "none")
+
+# L = Legality
+# OP = Opioid Provision
+# RE = Risk Environment
+# SE = Social Environment
+# IF = Individual Factors
+# P = Purity
+# DC = Drug Components
+# NFNM = Non-Fatal Near Misses
+# HOD = Heroin Overdose
+# DID = Drug Induced Death 
+# EB = Economic background
+# HL = Homelessness
+# SM = Sexual Minority Status
+# OSE = Other Forms of Social Exclusion
+
+```
+
+
+## Risk environment
+
+The risk environment represents a number of structural components that moderate the relationship
+between individual factors and injection drug users’ (IDUs’) health. For example, higher levels of drug law
+enforcement (DLE) have been linked to increased risk of overdose deaths [16]. The hypothesized agent of action is that
+increased criminal justice risk (CJR) associated with drug use leads to specific behaviors, e.g. not calling for emergency
+help (i.e. calling 911 in the United States) following a witnessed overdose, which increase individual harm
+associated with drug use [17]. Other structural factors such as needle exchange (NE), naloxone distribution (ND), safe
+injection rooms (SIR) and the availability of methadone treatment (MT) can reduce the risk of overdose or harm associated
+with overdose in areas where these services are available
+
+```{r}
+assumed_relationship_RE <- dagify(DID ~ HOD + SE + NE + SIR + ND,
+                                          NFNM ~ HOD + SE + SIR + JCR + ND,
+                                          HOD ~ SE + IF + OP + P + DC + SIR + NE + MT,
+                                          RE ~ IF + JCR,
+                                          JCR ~ DLE,
+                                          DLE ~ L,
+                                          DC ~ OP + SE + IF, # drug components other than heroin
+                                          P ~ OP + SE + IF, # purity/dose of heroin
+                                          OP ~ L,
+                                          latent = c("DLE", "JCR", "NE", "ND", "SIR", "MT"), # used to indicate risk environment
+                                          outcome = "DID",
+                                          exposure = "OP",
+                                          coords = list(x = c(L = -2,
+                                                              OP = 0,
+                                                              SE = 6, IF = 2,
+                                                              DLE = 1, JCR = 2, NE = 3, ND = 4, SIR = 5, MT = 6,
+                                                              P = 2.67,
+                                                              DC = 5.34,
+                                                              NFNM = 10,
+                                                              HOD = 8,
+                                                              DID = 10), 
+                                                        y =  c(L = 0,
+                                                              OP = 0,
+                                                              SE = 4, IF = 3,
+                                                              DLE = -1, JCR = -2, NE = -3, ND = -4, SIR = -5, MT = -6,
+                                                              P = 1,
+                                                              DC = 1,
+                                                              NFNM = 1,
+                                                              HOD = 0,
+                                                              DID = 0)))
+
+ggdag_status(assumed_relationship_RE) +
+  theme_dag() +
+  guides(color = "none")
+
+# L = Legality
+# OP = Opioid Provision
+# RE = Risk Environment
+# SE = Social Environment
+# IF = Individual Factors
+# P = Purity
+# DC = Drug Components
+# NFNM = Non-Fatal Near Misses
+# HOD = Heroin Overdose
+# DID = Drug Induced Death 
+# DLE = Drug Law Enforcement 
+# CJR = Criminal justice risk
+# NE = Needle Exchange
+# ND = Naloxone Distribution
+# MT = Methadone Treatment 
+# SIR = Safe Injection Rooms
+
+```
+
+## PLease ignore below 
+
+```{r}
+# PLEASE IGNORE!!
+commonly_assumed_relationship <- dagify(DID ~ HOD + CJR, # drug induced death
+                                  HOD ~ P + DC + PDU + LOE + I + IHU + R +
+                                        EB + HL + SM + OSE + SIR, # heroin-related overdose
+                                  DC ~ OP, # drug components other than heroin
+                                  P ~ OP + ND + NE, # purity/dose of heroin
+                                  NFNM ~ HOD, # non-fatal near misses
+                                  OP ~ L, # legalization and opioid provision
+                                  CJR ~ DLE,
+                        outcome = "DID",
+                        # latent = c("P", "OP"),
+                        exposure = "OP",
+                        coords = list(x = c(L = 0,
+                                            DID = 15, HOD = 13,
+                                            OP = 1,  P = 2, DC = 2, NFNM = 15,
+                                            IHU = 2, R = 3, PDU = 4, LOE = 5, I = 6, 
+                                            EB = 2, HL = 3,  SM = 4, OSE = 5,
+                                            DLE = 5, JCR = 6, NE = 7, ND = 8, SIR = 9, MT = 4),
+                                      y = c(OP = 1, L = 1, DID = 1, HOD = 1, P = 1.5, DC = 0.5, NFNM = 1.5, PDU = 2, LOE = 2, I = 2, IHU = 2, R = 2,
+                                            EB = 0, HL = 0,  SM = 0, OSE = 0,
+                                            DLE = 1.5, JCR = 1.5, NE = 1.5, ND = 1.5, SIR = 1.5, MT = 1.5)))
+
+ggdag_status(commonly_assumed_relationship) +
+  theme_dag() +
+  guides(color = "none")  # Turn off legend
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
