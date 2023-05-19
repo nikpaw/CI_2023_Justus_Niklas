@@ -64,9 +64,7 @@ ggdag_status(simplified_tested_relationship) +
 
 ## Problems with the Data
 
-Potential problems with the data used when investing these causal links are:
-
-- the strong focus on DID cases:
+- Strong focus on DID (Drug Induced Death) cases, might be similarly screwed like police violence data:
 
 "The absence of a strong association between purity and overdose is consistent with the demographic and toxicological characteristics of overdose cases. The typical fatal case is a long-term, dependent, daily injecting drug user (IDU) aged in their 30s or older [1–6], and not the younger, inexperienced user with low tolerance."
 
