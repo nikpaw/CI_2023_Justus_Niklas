@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Niklas Pawelzik, Justus v. Samson-Himmelstjerna">
+
+<title>Causal Inference Review</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Causal_Inference_Review_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Causal_Inference_Review_files/libs/quarto-html/quarto.js"></script>
+<script src="Causal_Inference_Review_files/libs/quarto-html/popper.min.js"></script>
+<script src="Causal_Inference_Review_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Causal_Inference_Review_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Causal_Inference_Review_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Causal_Inference_Review_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Causal_Inference_Review_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Causal_Inference_Review_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Causal_Inference_Review_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Causal Inference Review</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Niklas Pawelzik, Justus v. Samson-Himmelstjerna </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>This is a review and critique of the paper “Overdose in Illicit Opioids: The Role of Heroin Legal Status” using a causal inference pipeline. We analyze the methods used in the paper, critique them from a causal perspective, propose ways to strengthen the study, and suggest potential extensions.</p>
+<p>The paper examines whether a change in the legal status of heroin would significantly affect overdose rates. Though the study contributes interesting observations, its methodology and execution require more rigor from a causal perspective.</p>
+</section>
+<section id="pre-analysis-estimands-data-and-data-generation-process" class="level1">
+<h1>2. Pre-Analysis: Estimands, Data, and Data Generation Process</h1>
+<p>Before delving into the methods and critique, we define the estimands, consider the data and its generation process, and outline an identification strategy.</p>
+<section id="what-is-the-estimand" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-estimand">2.1 What is the Estimand?</h2>
+<p>In this case, the paper aimed to estimate the causal effect of heroin’s legal status on overdose rates. Potential research questions could be:</p>
+<ul>
+<li>Is there a difference in overdose rates between jurisdictions where heroin is illegal and where it’s legalized or decriminalized?</li>
+<li>If heroin’s legal status changed, what would be the expected change in overdose rates?</li>
+</ul>
+</section>
+<section id="thinking-about-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="thinking-about-the-data">2.2 Thinking About the Data</h2>
+<p>The data used in the paper is observational and presents data on opioid prescription rates, non-medical use rates, emergency room visit rates, and overdose deaths. When thinking about data, it’s important to consider how it was gathered and what inherent biases it might contain.</p>
+</section>
+<section id="contemplating-the-data-generation-process" class="level2">
+<h2 class="anchored" data-anchor-id="contemplating-the-data-generation-process">2.3 Contemplating the Data Generation Process</h2>
+<p>Understanding the data generation process is key. In this case, a Directed Acyclic Graph (DAG) shows the relationships between opioid use, overdose rates, and various confounding factors, including socio-economic factors, access to medical treatment, and drug potency.</p>
+</section>
+</section>
+<section id="methods-and-approach-review-and-critique" class="level1">
+<h1>3. Methods and Approach: Review and Critique</h1>
+<section id="lack-of-randomization" class="level2">
+<h2 class="anchored" data-anchor-id="lack-of-randomization">3.1 Lack of Randomization</h2>
+<p>The paper relies on observational data, which is vulnerable to confounding. Randomization could provide a more robust measure of the effect of heroin’s legal status on overdose rates.</p>
+</section>
+<section id="absence-of-counterfactual" class="level2">
+<h2 class="anchored" data-anchor-id="absence-of-counterfactual">3.2 Absence of Counterfactual</h2>
+<p>The paper does not present a clear counterfactual scenario, which is crucial for causal inference.</p>
+</section>
+<section id="issues-with-extrapolation" class="level2">
+<h2 class="anchored" data-anchor-id="issues-with-extrapolation">3.3 Issues with Extrapolation</h2>
+<p>The authors extrapolate the impact of legalizing heroin based on the epidemic of pharmaceutical opioid overdoses. However, this assumes the effects of pharmaceutical opioids and heroin are interchangeable, which may not be accurate.</p>
+</section>
+</section>
+<section id="identification-strategy" class="level1">
+<h1>4. Identification Strategy</h1>
+<section id="confounders-colliders-mediators" class="level2">
+<h2 class="anchored" data-anchor-id="confounders-colliders-mediators">4.1 Confounders, Colliders, Mediators</h2>
+<p>The paper does not thoroughly address potential confounders, colliders, or mediators in its analysis. For instance, socio-economic factors, access to medical treatment, drug potency, and prevalence of polydrug use could all confound the relationship between heroin’s legal status and overdose rates.</p>
+</section>
+<section id="effect-identification-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="effect-identification-strategy">4.2 Effect Identification Strategy</h2>
+<p>The paper does not clearly outline an effect identification strategy. The authors could consider various strategies, such as difference-in-differences, instrumental variables, or regression discontinuity designs.</p>
+</section>
+</section>
+<section id="proposed-remedies" class="level1">
+<h1>5. Proposed Remedies</h1>
+<section id="use-of-quasi-experimental-methods" class="level2">
+<h2 class="anchored" data-anchor-id="use-of-quasi-experimental-methods">5.1 Use of Quasi-Experimental Methods</h2>
+<p>Quasi-experimental methods could help establish causal relationships by exploiting natural variations in policy or exposure to opioids.</p>
+</section>
+<section id="counterfactual-scenario-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="counterfactual-scenario-analysis">5.2 Counterfactual Scenario Analysis</h2>
+<p>Counterfactual scenario analysis could be beneficial. For example, the authors could use data from jurisdictions where heroin has been legalized or decriminalized to generate a plausible counterfactual.</p>
+</section>
+</section>
+<section id="extension-of-research" class="level1">
+<h1>6. Extension of Research</h1>
+<section id="multi-dimensional-approach" class="level2">
+<h2 class="anchored" data-anchor-id="multi-dimensional-approach">6.1 Multi-Dimensional Approach</h2>
+<p>Future research should examine not only the legal status of heroin but also other factors like access to treatment, drug potency, and the prevalence of polydrug use.</p>
+</section>
+<section id="use-of-causal-models" class="level2">
+<h2 class="anchored" data-anchor-id="use-of-causal-models">6.2 Use of Causal Models</h2>
+<p>Causal models, such as Directed Acyclic Graphs (DAGs), could help to clarify the assumed causal relationships and identify potential confounders and mediators.</p>
+</section>
+</section>
+<section id="evaluate" class="level1">
+<h1>7. Evaluate</h1>
+<p>Finally, we must evaluate the results. It would be beneficial to run a sensitivity analysis to assess the robustness of the results.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>While the paper provides an interesting perspective on the issue of heroin legalization and overdoses, it has several methodological limitations from a causal inference perspective. Incorporating quasi-experimental methods, counterfactual scenario analysis, and a more comprehensive causal model could provide more robust evidence on this issue.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
