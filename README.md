@@ -17,10 +17,6 @@ In this case, the paper aimed to estimate the causal effect of heroin's legal st
 ## 2.2 Thinking About the Data
 The data used in the paper is observational and presents data on opioid prescription rates, non-medical use rates, emergency room visit rates, and overdose deaths. When thinking about data, it's important to consider how it was gathered and what inherent biases it might contain. The paper utilizes data from various studies examining overdose rates related to heroin and other opioid use. The authors also consider the recent epidemic of prescription opioid use in the United States as a natural experiment. Some variables to be considered here are the legal status of opioids, variations in illicit drug purity, the presence of drug contaminants, prescription opioid dependence, and overdose fatalities.
 
-The paper identifies two key assumptions - that variations in illicit drug purity and/or the presence of drug contaminants are major causes of overdose. These assumptions are then examined using available data. For example, it's noted that toxicological and demographic data from studies of heroin overdose deaths do not support these assumptions.
-
-The authors rely on the natural experiment of the prescription opioid epidemic to test their assumptions. They find that overdose rates have escalated with the increased rates of prescribing of pharmaceutical opioids, suggesting that legal access to opioids doesn't necessarily reduce overdose rates.
-
 ## 2.3 Contemplating the Data Generation Process
 Understanding the data generation process is key. In this case, a Directed Acyclic Graph (DAG) shows the relationships between opioid use, overdose rates, and various confounding factors, including socio-economic factors, access to medical treatment, and drug potency.
 
@@ -36,6 +32,9 @@ The paper does not present a clear counterfactual scenario, which is crucial for
 The authors extrapolate the impact of legalizing heroin based on the epidemic of pharmaceutical opioid overdoses. However, this assumes the effects of pharmaceutical opioids and heroin are interchangeable, which may not be accurate.
 
 # 4. Identification Strategy
+The paper identifies two key assumptions - that variations in illicit drug purity and/or the presence of drug contaminants are major causes of overdose. These assumptions are then examined using available data. For example, it's noted that toxicological and demographic data from studies of heroin overdose deaths do not support these assumptions.
+
+The authors rely on the natural experiment of the prescription opioid epidemic to test their assumptions. They find that overdose rates have escalated with the increased rates of prescribing of pharmaceutical opioids, suggesting that legal access to opioids doesn't necessarily reduce overdose rates.
 
 ## 4.1 Confounders, Colliders, Mediators
 The paper does not thoroughly address potential confounders, colliders, or mediators in its analysis. For instance, socio-economic factors, access to medical treatment, drug potency, and prevalence of polydrug use could all confound the relationship between heroin's legal status and overdose rates.
