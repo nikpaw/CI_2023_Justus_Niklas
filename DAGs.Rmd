@@ -108,6 +108,8 @@ Unick, Rosenblum, Mars and Ciccarone review literature on causes for high risk o
 
 ### 3. Social Environment (SE)
 
+Looking at the DAGs below, it becomes clear that estimating effects of heroin legalization is an extremely complicated goal. Individual Factors, Social and Risk Environment behave as mediators, colliders and confounders. In the DAGs below, we included 15 additional variables all of which are listed by Unick et al. as well established factors for the risk of overdosing. We will discuss some of those relationships exemplarily below. 
+
 ```{r}
 simplified_assumed_relationship <- dagify(DID ~ HOD + RE + SE,
                                           NFNM ~ HOD + RE + SE,
@@ -153,6 +155,8 @@ ggdag_status(simplified_assumed_relationship) +
 ```
 
 ## Proximal causes and individual factors
+
+Besides polydrug use, rapid changes in heroin tolerance is among the most common individual level causes for an overdose. Reasons for such tolerance changes incarceration (I), relapse following drug treatment (R) or infrequent heroin use (IHU). All of those variables interact with legal access to heroin and its subsequent effects. For instance, legalization eases access and therefore decreases the risk for users to experience involuntary infrequent heroin use due to unavailability on the black market. In a similar vein, legal access to heroin decreases the danger of incarceration due to acquisitive crime. 
 
 "The proximal causes and individual factors associated with heroin-related overdose (HOD) are well known [1,3,6,7]. Heroin overdoses are frequently due to polydrug use (PDU), specifically when heroin is combined with central nervous system depressants such as alcohol and benzodiazepines that contribute to respiratory failure [8]. A lack of experience (LOE) in heroin use and rapid changes in tolerance due to incarceration (I), relapse following drug treatment (R) or infrequent heroin use (IHU) have been linked to higher rates of overdose [6,9–11]"
 (The relationship between US heroin market dynamics and heroin-related overdose, 1992–2008)
@@ -210,66 +214,9 @@ ggdag_status(assumed_relationship_IF) +
 
 ```
 
-## Social Causes
-
-"Moving upstream, social causes such as poverty (EB), home-lessness (HL), sexual minority status (SM) or other forms of social exclusion (OSE) have also been linked to increased risk of drug overdose [12–15]"
-(The relationship between US heroin market dynamics and heroin-related overdose, 1992–2008)
-
-```{r}
-assumed_relationship_SC <- dagify(DID ~ HOD + RE + HL + OSE,
-                                          NFNM ~ HOD + RE,
-                                          HOD ~ RE + IF + OP + P + DC + EB + HL + SM + OSE,
-                                          RE ~ IF + HL + EB + SM + OSE,
-                                          DC ~ OP + RE + IF, # drug components other than heroin
-                                          P ~ OP + RE + IF, # purity/dose of heroin
-                                          OP ~ L,
-                                          HL ~ EB + SM + OSE + IF + HOD,
-                                          EB ~ SM + OSE + IF,
-                                          outcome = "DID",
-                                          exposure = "OP",
-                                          latent = c("EB", "HL", "SM", "OSE"),  # used to indicate social environment
-                                          coords = list(x = c(L = -2,
-                                                              OP = 0,
-                                                              RE = 4, IF = 2,
-                                                              EB = 1, HL = 2.5,  SM = 3, OSE = 4,
-                                                              P = 2.67,
-                                                              DC = 5.34,
-                                                              NFNM = 10,
-                                                              HOD = 8,
-                                                              DID = 10), 
-                                                        y =  c(L = 0,
-                                                              OP = 0,
-                                                              RE = 4, IF = 3,
-                                                              EB = -1, HL = -2,  SM = -5, OSE = -8,
-                                                              P = 1,
-                                                              DC = 1,
-                                                              NFNM = 1,
-                                                              HOD = 0,
-                                                              DID = 0)))
-
-ggdag_status(assumed_relationship_SC) +
-  theme_dag() +
-  guides(color = "none")
-
-# L = Legality
-# OP = Opioid Provision
-# RE = Risk Environment
-# SE = Social Environment
-# IF = Individual Factors
-# P = Purity
-# DC = Drug Components
-# NFNM = Non-Fatal Near Misses
-# HOD = Heroin Overdose
-# DID = Drug Induced Death 
-# EB = Economic background
-# HL = Homelessness
-# SM = Sexual Minority Status
-# OSE = Other Forms of Social Exclusion
-
-```
-
-
 ## Risk environment
+
+Legalization has not only an effect on the risk of criminal justice risk in the form  a potentially high-risk incarceration. Limiting legal access to heroin furthermore can be linked to "higher levels of drug law enforcement (DLE) [that in turn] have been linked to increased risk of overdose deaths [16]. The hypothesized agent of action is that increased criminal justice risk (CJR) associated with drug use leads to specific behaviors, e.g. not calling for emergency help (i.e. calling 911 in the United States) following a witnessed overdose, which increase individual harm associated with drug use [17]." It becomes clear that "risk environment represents a number of structural components that moderate the relationship between individual factors and injection drug users’ (IDUs’) health" that should be considered when estimating mechanisms and effects of legalizing heroin. An additional aspect to be taken into account regards risk environment related variables such as the access to naloxone distribution (ND) or safe injection rooms (SIR) that can be mediated by legality in their effectiveness in decreasing the likelihood of heroin overdoses to be fatal.  
 
 "The risk environment represents a number of structural components that moderate the relationship between individual factors and injection drug users’ (IDUs’) health. For example, higher levels of drug law enforcement (DLE) have been linked to increased risk of overdose deaths [16]. The hypothesized agent of action is that increased criminal justice risk (CJR) associated with drug use leads to specific behaviors, e.g. not calling for emergency help (i.e. calling 911 in the United States) following a witnessed overdose, which increase individual harm associated with drug use [17]. Other structural factors such as needle exchange (NE), naloxone distribution (ND), safe injection rooms (SIR) and the availability of methadone treatment (MT) can reduce the risk of overdose or harm associated with overdose in areas where these services are available"
 (The relationship between US heroin market dynamics and heroin-related overdose, 1992–2008)
@@ -329,7 +276,74 @@ ggdag_status(assumed_relationship_RE) +
 
 ```
 
-## PLease ignore below 
+
+## Social Causes
+
+Lastly, social causes need to be taken into account, as they might very well change the way the factors indicated above affect overdose and fatality risks. Being affected by poverty, homelessness and other forms of social exclusion - all listed as risk factors for drug overdose - can reinforce each other. In addition, they interact with risk environment related factors such as increased criminal justice risk or the related individual factor incarceration. In a similar vein, members of the indicated social groups are at higher risk of involuntary infrequent heroin access. All social causes indicated play a role as mediators, colliders, and/or confounders in the way legalization would affect fatal overdose cases. 
+
+"Moving upstream, social causes such as poverty (EB), homelessness (HL), sexual minority status (SM) or other forms of social exclusion (OSE) have also been linked to increased risk of drug overdose [12–15]"
+(The relationship between US heroin market dynamics and heroin-related overdose, 1992–2008)
+
+```{r}
+assumed_relationship_SC <- dagify(DID ~ HOD + RE + HL + OSE,
+                                          NFNM ~ HOD + RE,
+                                          HOD ~ RE + IF + OP + P + DC + EB + HL + SM + OSE,
+                                          RE ~ IF + HL + EB + SM + OSE,
+                                          DC ~ OP + RE + IF, # drug components other than heroin
+                                          P ~ OP + RE + IF, # purity/dose of heroin
+                                          OP ~ L,
+                                          HL ~ EB + SM + OSE + IF + HOD,
+                                          EB ~ SM + OSE + IF,
+                                          outcome = "DID",
+                                          exposure = "OP",
+                                          latent = c("EB", "HL", "SM", "OSE"),  # used to indicate social environment
+                                          coords = list(x = c(L = -2,
+                                                              OP = 0,
+                                                              RE = 4, IF = 2,
+                                                              EB = 1, HL = 2.5,  SM = 3, OSE = 4,
+                                                              P = 2.67,
+                                                              DC = 5.34,
+                                                              NFNM = 10,
+                                                              HOD = 8,
+                                                              DID = 10), 
+                                                        y =  c(L = 0,
+                                                              OP = 0,
+                                                              RE = 4, IF = 3,
+                                                              EB = -1, HL = -2,  SM = -5, OSE = -8,
+                                                              P = 1,
+                                                              DC = 1,
+                                                              NFNM = 1,
+                                                              HOD = 0,
+                                                              DID = 0)))
+
+ggdag_status(assumed_relationship_SC) +
+  theme_dag() +
+  guides(color = "none")
+
+# L = Legality
+# OP = Opioid Provision
+# RE = Risk Environment
+# SE = Social Environment
+# IF = Individual Factors
+# P = Purity
+# DC = Drug Components
+# NFNM = Non-Fatal Near Misses
+# HOD = Heroin Overdose
+# DID = Drug Induced Death 
+# EB = Economic background
+# HL = Homelessness
+# SM = Sexual Minority Status
+# OSE = Other Forms of Social Exclusion
+
+```
+
+
+## Please ignore code snippets  below 
+
+We could create another DAG that includes all variables we indicated in the text, at least to have a selection that does not claim to be complete. Just as a basic to work with. Based on that, we could then discuss how we would need to set up a research desgin that takes into account this complicated setting (what to control for etc.), to show off what we remember from the course.
+
+Next, I think we should turn to what I started talk about above as well: Flaws with the Data used for the main two arguments, and flaws of the natural experiment. I started making notes with key points and quotes from the article above - I think there is plenty we can suggest improvements on.
+
 
 ```{r}
 # PLEASE IGNORE!!
