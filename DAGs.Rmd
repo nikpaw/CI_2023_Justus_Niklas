@@ -62,41 +62,6 @@ ggdag_status(simplified_tested_relationship) +
 
 ```
 
-## Problems with the Data
-
-- Strong focus on DID (Drug Induced Death) cases, might be similarly screwed like police violence data:
-
-"The absence of a strong association between purity and overdose is consistent with the demographic and toxicological characteristics of overdose cases. The typical fatal case is a long-term, dependent, daily injecting drug user (IDU) aged in their 30s or older [1–6], and not the younger, inexperienced user with low tolerance."
-
-- having polydrug users as a maior issue might explain why a lot of heroin addicts are among the people dying from legal opioids. Thus, Using heroin and using opioids are very hard to control for when checking overdose fatalities
-
-"Polydrug toxicity has emerged as the major factor in heroin overdoses. The overwhelming majority of opioid overdoses, both fatal and non-fatal, involve multiple CNS depressants, most notably alcohol and benzodiazepines [12–15,24–27,38,39]. Co-administration of other depressant drugs can substantially increase the likelihood of a fatal outcome, due to the combined respiratory depressant effects of these drugs."
-
-- complicated aim to compare users after periods of opioid abstinence and non-abstinence. If not controlling correctly for these subgroups, effects might be screwed.
-
-"There are situations in which tolerance plays a more significant role, specifically after periods of opioid abstinence, such as the period immediately following imprisonment release or detoxification. The risk of death in these specific situations is elevated substantially [15,44–49]. However, such cases constitute a small minority, and it is questionable in the absence of opioid tolerance whether or not variations in purity are of relevance, as the risk of death is so high."
-
-## Problems with the natural Experiment
-
-- aims to treat heroin like any other  opioid in order to be able to perceive real-world example of widespread licit opioid provision
-
-"The situation observed in the pharmaceutical opioids epidemic is of direct relevance to our discussion, as it provides a real-world example of widespread licit opioid provision. We have widely available, labelled, legal opioids of known concentration, free of impurities. As prescription rates have increased, however, poisonings have increased dramatically. Of particular interest, a large proportion of these deaths are established heroin users who have begun to use this more readily available opioid. They are now injecting a licit opioid (albeit often not prescribed to them), rather than illicit heroin. Despite the fact that the drug is an impurity-free pharmaceutical of known dosage, toxicity deaths among this group have risen dramatically."
-
-- first distinct group: Probably not relevant for heroin comparison, older group of chronic pain patients
-
-- second distinct group: possibly similar to heroin group, but finding is that "the toxicology mirrors those of other opioids, including heroin, in overwhelmingly involving the concomitant use of other CNS depressants". However, we do not see the ratio of users to users that fatally overdose, we only see users that fatally overdose. Heroin users that combine opioids and other substances.
-
-"Importantly, the toxicological profile of these deaths is consistent with that of heroin and other opioid deaths. Wider use has resulted in more deaths."
-
-"Who is dying from these prescribed drugs? Cases comprise two distinct groups: established opioid-using IDUs, a sizable proportion of whom who inject the tablets, and a larger, older group of chronic pain patients [49,53,55,56,58,60]. Interestingly, we see again that the age profile of cases is skewed heavily towards older users, rather than young, inexperienced (and possibly low opioid-tolerant) individuals. In as many as half of cases the drug was not prescribed to the decedent [49,53,55,56]. Importantly, the toxicology mirrors those of other opioids, including heroin, in overwhelmingly involving the concomitant use of other CNS depressants, most notably benzodiazepines, alcohol and other opioids [52,53,55,56,58,60]."
-
-- authors proposing: (re-)defining intervention: not dose and purity through legality
-- increase rates due to wider availability and more widespread, unsupervised use of these drugs
-- not backed by empirical findings(?)
-- authors proposing: provision of injectable heroin to be consumed solely in treatment settings
-- much closer to a natural experiment. intervention/controlling on several variables, but group more coherent as both are heroin consumers
-
-"Known dose and purity do not protect and any such provision, we argue, would not reduce overdose rates, but actually increase rates due to wider availability and more widespread, unsupervised use of these drugs. A far more restricted model, which could theoretically make a major impact on overdose rates, would be the provision of injectable heroin to be consumed solely in treatment settings, such has been trialled in Switzerland and the United Kingdom [18,19]. Rates of mortality are, indeed, significantly lower in such trials, a fact shared with treatment more broadly [3]. Importantly, if an adverse reaction occurs, there is medical support present. It is arguable, however, whether this would be comprehensively provided in most jurisdictions."
 
 ## High Level DAGS (George Unick, Daniel Rosenblum, Sarah Mars & Daniel Ciccarone)
 
@@ -108,7 +73,7 @@ Unick, Rosenblum, Mars and Ciccarone review literature on causes for high risk o
 
 ### 3. Social Environment (SE)
 
-Looking at the DAGs below, it becomes clear that estimating effects of heroin legalization is an extremely complicated goal. Individual Factors, Social and Risk Environment behave as mediators, colliders and confounders. In the DAGs below, we included 15 additional variables all of which are listed by Unick et al. as well established factors for the risk of overdosing. We will discuss some of those relationships exemplarily below. 
+Looking at the DAGs below, it becomes clear that estimating effects of heroin legalization is an extremely complicated goal. Individual Factors, Social and Risk Environment behave as mediators, colliders and confounders. In the DAGs below, we included 15 additional variables all of which are listed by Unick et al. as well established factors for the risk of overdosing. We will discuss some of those relationships exemplary below. 
 
 ```{r}
 simplified_assumed_relationship <- dagify(DID ~ HOD + RE + SE,
@@ -336,7 +301,47 @@ ggdag_status(assumed_relationship_SC) +
 # OSE = Other Forms of Social Exclusion
 
 ```
+## Estimants: What do we estimate?
 
+The paper´s title claims to provide inside on the question whether "legalizing illicit opioids [would] reduce overdose fatalities". This would mean to estimate the total effect a change on legality had on the number of heroin induced overdose deaths. As previously pointed out, the effect of legalizing heroin on the cases of fatal overdoses involves numerous additional factors that mediate, confound or collide the effect that need to be carefully considered when estimating the overall effect. Looking at the dags above however, it becomes clear that at least in the first part of the paper, this is not in fact the estimant explored. Instead, the authors decided to focus on what they claim to be the two most commonly assumed drivers for decreasing fatality rates, purity and drug composition. What they investigate is the indirect effect of legalizing heroin on fatal overdoses  mediated by these two variables. They furthermore limit the initially stated general claim to "provision in the manner of substances such as alcohol, where use is by the individual in a setting of their choosing [20]. Known dose and purity do not protect and any such provision, we argue, would not reduce overdose rates". They thereby exclude any model that includes institutional settings like supervised consumption rooms. Combining these limitations, the study therefore examines the potential impact of legalization, without additional framework measures, on changes in the purity and adulterant levels, and how these changes would affect the immediate mortality rate due to overdose. Contrary to the authors' claim, the research does not focus on the overall effect of legalizing heroin on the number of fatal overdoses.
+
+## Problems with the Data
+
+They estimate these effects based on data 
+
+- Strong focus on DID (Drug Induced Death) cases, might be similarly screwed like police violence data:
+
+"The absence of a strong association between purity and overdose is consistent with the demographic and toxicological characteristics of overdose cases. The typical fatal case is a long-term, dependent, daily injecting drug user (IDU) aged in their 30s or older [1–6], and not the younger, inexperienced user with low tolerance."
+
+- having polydrug users as a maior issue might explain why a lot of heroin addicts are among the people dying from legal opioids. Thus, Using heroin and using opioids are very hard to control for when checking overdose fatalities
+
+"Polydrug toxicity has emerged as the major factor in heroin overdoses. The overwhelming majority of opioid overdoses, both fatal and non-fatal, involve multiple CNS depressants, most notably alcohol and benzodiazepines [12–15,24–27,38,39]. Co-administration of other depressant drugs can substantially increase the likelihood of a fatal outcome, due to the combined respiratory depressant effects of these drugs."
+
+- complicated aim to compare users after periods of opioid abstinence and non-abstinence. If not controlling correctly for these subgroups, effects might be screwed.
+
+"There are situations in which tolerance plays a more significant role, specifically after periods of opioid abstinence, such as the period immediately following imprisonment release or detoxification. The risk of death in these specific situations is elevated substantially [15,44–49]. However, such cases constitute a small minority, and it is questionable in the absence of opioid tolerance whether or not variations in purity are of relevance, as the risk of death is so high."
+
+## Problems with the natural Experiment
+
+- aims to treat heroin like any other  opioid in order to be able to perceive real-world example of widespread licit opioid provision
+
+"The situation observed in the pharmaceutical opioids epidemic is of direct relevance to our discussion, as it provides a real-world example of widespread licit opioid provision. We have widely available, labelled, legal opioids of known concentration, free of impurities. As prescription rates have increased, however, poisonings have increased dramatically. Of particular interest, a large proportion of these deaths are established heroin users who have begun to use this more readily available opioid. They are now injecting a licit opioid (albeit often not prescribed to them), rather than illicit heroin. Despite the fact that the drug is an impurity-free pharmaceutical of known dosage, toxicity deaths among this group have risen dramatically."
+
+- first distinct group: Probably not relevant for heroin comparison, older group of chronic pain patients
+
+- second distinct group: possibly similar to heroin group, but finding is that "the toxicology mirrors those of other opioids, including heroin, in overwhelmingly involving the concomitant use of other CNS depressants". However, we do not see the ratio of users to users that fatally overdose, we only see users that fatally overdose. Heroin users that combine opioids and other substances.
+
+"Importantly, the toxicological profile of these deaths is consistent with that of heroin and other opioid deaths. Wider use has resulted in more deaths."
+
+"Who is dying from these prescribed drugs? Cases comprise two distinct groups: established opioid-using IDUs, a sizable proportion of whom who inject the tablets, and a larger, older group of chronic pain patients [49,53,55,56,58,60]. Interestingly, we see again that the age profile of cases is skewed heavily towards older users, rather than young, inexperienced (and possibly low opioid-tolerant) individuals. In as many as half of cases the drug was not prescribed to the decedent [49,53,55,56]. Importantly, the toxicology mirrors those of other opioids, including heroin, in overwhelmingly involving the concomitant use of other CNS depressants, most notably benzodiazepines, alcohol and other opioids [52,53,55,56,58,60]."
+
+- authors proposing: (re-)defining intervention: not dose and purity through legality
+- increase rates due to wider availability and more widespread, unsupervised use of these drugs
+- not backed by empirical findings(?)
+- authors proposing: provision of injectable heroin to be consumed solely in treatment settings
+- much closer to a natural experiment. intervention/controlling on several variables, but group more coherent as both are heroin consumers
+
+"Known dose and purity do not protect and any such provision, we argue, would not reduce overdose rates, but actually increase rates due to wider availability and more widespread, unsupervised use of these drugs. A far more restricted model, which could theoretically make a major impact on overdose rates, would be the provision of injectable heroin to be consumed solely in treatment settings, such has been trialled in Switzerland and the United Kingdom [18,19]. Rates of mortality are, indeed, significantly lower in such trials, a fact shared with treatment more broadly [3]. Importantly, if an adverse reaction occurs, there is medical support present. It is arguable, however, whether this would be comprehensively provided in most jurisdictions."
 
 ## Please ignore code snippets  below 
 
