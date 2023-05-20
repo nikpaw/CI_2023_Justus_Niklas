@@ -187,12 +187,16 @@ Legalization has not only an effect on the risk of criminal justice risk in the 
 (The relationship between US heroin market dynamics and heroin-related overdose, 1992–2008)
 
 ```{r}
-assumed_relationship_RE <- dagify(DID ~ HOD + SE + NE + SIR + ND,
+assumed_relationship_RE <- dagify(DID ~ HOD + SE + NE + SIR + ND + JCR,
                                           NFNM ~ HOD + SE + SIR + JCR + ND,
                                           HOD ~ SE + IF + OP + P + DC + SIR + NE + MT,
                                           RE ~ IF + JCR,
-                                          JCR ~ DLE,
+                                          IF ~ DLE + JCR + SIR + MT + L,
+                                          JCR ~ DLE + L,
                                           DLE ~ L,
+                                          MT ~ L,
+                                          NE ~ L,
+                                          ND ~ L,
                                           DC ~ OP + SE + IF, # drug components other than heroin
                                           P ~ OP + SE + IF, # purity/dose of heroin
                                           OP ~ L,
@@ -202,7 +206,7 @@ assumed_relationship_RE <- dagify(DID ~ HOD + SE + NE + SIR + ND,
                                           coords = list(x = c(L = -2,
                                                               OP = 0,
                                                               SE = 6, IF = 2,
-                                                              DLE = 1, JCR = 2, NE = 3, ND = 4, SIR = 5, MT = 6,
+                                                              DLE = 1, JCR = 2.5, NE = 3.25, ND = 4, SIR = 4.75, MT = 5.5,
                                                               P = 2.67,
                                                               DC = 5.34,
                                                               NFNM = 10,
@@ -210,11 +214,11 @@ assumed_relationship_RE <- dagify(DID ~ HOD + SE + NE + SIR + ND,
                                                               DID = 10), 
                                                         y =  c(L = 0,
                                                               OP = 0,
-                                                              SE = 4, IF = 3,
-                                                              DLE = -1, JCR = -2, NE = -3, ND = -4, SIR = -5, MT = -6,
+                                                              SE = 5, IF = 5,
+                                                              DLE = -1.5, JCR = -3, NE = -5, ND = -7, SIR = -9, MT = -11,
                                                               P = 1,
                                                               DC = 1,
-                                                              NFNM = 1,
+                                                              NFNM = 3,
                                                               HOD = 0,
                                                               DID = 0)))
 
@@ -277,7 +281,7 @@ assumed_relationship_SC <- dagify(DID ~ HOD + RE + HL + OSE,
                                                               EB = -1, HL = -2,  SM = -5, OSE = -8,
                                                               P = 1,
                                                               DC = 1,
-                                                              NFNM = 1,
+                                                              NFNM = 2,
                                                               HOD = 0,
                                                               DID = 0)))
 
@@ -307,19 +311,21 @@ The paper´s title claims to provide inside on the question whether "legalizing 
 
 ## Problems with the Data
 
-They estimate these effects based on data 
+Previously, the assumed mechanisms, estimants and theoretical foundations have been reviewed. One of the main insights of this discussion was the much more limited estimant than suggested by the paper´s title. While we furthermore pointed out a number of problematic simplifications, in the subsequent section we would like to turn to a different aspect of the article in question. Even if we were to accept the theoretical premises discussed above, the data the authors based the estimation of these effects deserves attention. For the first part of the paper, the researchers quote from a number of different sources. As many of the data analyses their conclusions are based on are not within our reach, reviewing the quality of this research is hard to evaluate. A common feature of these sources, however, seems to be the predominant focus on cases of Drug Induced Deaths and cases of overdoses. Focusing only on those cases means to exclusively consider cases that, in the simplified DAGs above, have one specific value in the binary variables Heroin Overdose (HOD) and Drug Induced Death (DID). Estimating the (total, direct, or indirect) effect of legalizing heroin, however, would define the population as the population of heroin addicts. Using a data base that primarily or exclusively contains HOD or DID cases is likely to result in a sample that does not represent this target population.
+
+Another issue might arise when comparing different subgroups of heroin users. When the different variables discussed interact with the effect of legalization in the way described above, it becomes impossible to precisely estimate the effect strength of the targeted estimant. This becomes clear when the authors aim to discuss, for instance, the effect of different levels of heroin purity on the tolerance of heroin users after periods of opioid abstinence in comparison to heroin users without abstinence. If subgroups are not considered for controlling, effect estimates might be screwed. As seen above, abstinence and its effect on tolerance are entangled in a complex way with several individual risk factors, as well as the risk and social environment. The authors indeed acknowledge this limitation when they state that there "are situations in which tolerance plays a more significant role, specifically after periods of opioid abstinence, such as the period immediately following imprisonment release or detoxification." As they do not control for such variables in their limited model however, their data analysis seems to be not sufficiently fine-grained to estimate the difference of effect strength; and they are limited to the statement that "such cases constitute a small minority, and it is questionable in the absence of opioid tolerance whether or not variations in purity are of relevance, as the risk of death is so high."
 
 - Strong focus on DID (Drug Induced Death) cases, might be similarly screwed like police violence data:
 
 "The absence of a strong association between purity and overdose is consistent with the demographic and toxicological characteristics of overdose cases. The typical fatal case is a long-term, dependent, daily injecting drug user (IDU) aged in their 30s or older [1–6], and not the younger, inexperienced user with low tolerance."
 
-- having polydrug users as a maior issue might explain why a lot of heroin addicts are among the people dying from legal opioids. Thus, Using heroin and using opioids are very hard to control for when checking overdose fatalities
-
-"Polydrug toxicity has emerged as the major factor in heroin overdoses. The overwhelming majority of opioid overdoses, both fatal and non-fatal, involve multiple CNS depressants, most notably alcohol and benzodiazepines [12–15,24–27,38,39]. Co-administration of other depressant drugs can substantially increase the likelihood of a fatal outcome, due to the combined respiratory depressant effects of these drugs."
-
 - complicated aim to compare users after periods of opioid abstinence and non-abstinence. If not controlling correctly for these subgroups, effects might be screwed.
 
 "There are situations in which tolerance plays a more significant role, specifically after periods of opioid abstinence, such as the period immediately following imprisonment release or detoxification. The risk of death in these specific situations is elevated substantially [15,44–49]. However, such cases constitute a small minority, and it is questionable in the absence of opioid tolerance whether or not variations in purity are of relevance, as the risk of death is so high."
+
+- having polydrug users as a maior issue might explain why a lot of heroin addicts are among the people dying from legal opioids. Thus, Using heroin and using opioids are very hard to control for when checking overdose fatalities
+
+"Polydrug toxicity has emerged as the major factor in heroin overdoses. The overwhelming majority of opioid overdoses, both fatal and non-fatal, involve multiple CNS depressants, most notably alcohol and benzodiazepines [12–15,24–27,38,39]. Co-administration of other depressant drugs can substantially increase the likelihood of a fatal outcome, due to the combined respiratory depressant effects of these drugs."
 
 ## Problems with the natural Experiment
 
