@@ -15,7 +15,13 @@ library(ggdag)
 library(ggplot2)
 ```
 
-## DAG as claimed to be tested by Shane Darke & Michael Farrell
+## Reflecting on Theoretical Foundations
+
+### DAG as claimed to be tested by Darke & Farrell
+
+In the first part of the paper, the authors claim to check "the extent to which any change in legal access to heroin would affect overdose rates". According to them, it is sufficient to investigate "drug purity and drug impurity as major causes of overdose" in order to falsify this claim. Before turning to the natural experiment analysis proposed by the authors in the second half of their paper, we will take a closer look to the claimed causal mechanism of the paper. For this purpose, we visualize their model in the following DAG: 
+
+#### Notes and Quotes
 
 "In the community setting, where most drug use occurs, the extent to which any change in legal access to heroin would affect overdose rates depends upon the validity of the assumptions underpinning the argument: drug purity and drug impurity as major causes of overdose. We will now address each of these assumptions, before examining lessons to be drawn from the prescription opioid epidemic of recent years" 
 (Would legalizing illicit opioids reduce overdose fatalities? Implications from a natural experiment)
@@ -63,15 +69,15 @@ ggdag_status(simplified_tested_relationship) +
 ```
 
 
-## High Level DAGS (George Unick, Daniel Rosenblum, Sarah Mars & Daniel Ciccarone)
+### High Level DAGS (Unick, Rosenblum, Mars & Ciccarone)
 
-Unick, Rosenblum, Mars and Ciccarone review literature on causes for high risk of heroin overdoses. They distinguish three types of variables that should be considered and that are subsequently added in the simplified DAG developed above:
+In a paper on a related topic, Unick, et al. reviewed literature on causes for high risk of heroin overdoses. They distinguish three types of variables that should be considered and that are subsequently added in the simplified DAG developed above:
 
-### 1. Individual Factors (IF)
+1. Individual Factors (IF)
 
-### 2. Risk Environment (RE)
+2. Risk Environment (RE)
 
-### 3. Social Environment (SE)
+3. Social Environment (SE)
 
 Looking at the DAGs below, it becomes clear that estimating effects of heroin legalization is an extremely complicated goal. Individual Factors, Social and Risk Environment behave as mediators, colliders and confounders. In the DAGs below, we included 15 additional variables all of which are listed by Unick et al. as well established factors for the risk of overdosing. We will discuss some of those relationships exemplary below. 
 
@@ -119,9 +125,11 @@ ggdag_status(simplified_assumed_relationship) +
 
 ```
 
-## Proximal causes and individual factors
+#### Proximal causes and individual factors
 
-Besides polydrug use, rapid changes in heroin tolerance is among the most common individual level causes for an overdose. Reasons for such tolerance changes incarceration (I), relapse following drug treatment (R) or infrequent heroin use (IHU). All of those variables interact with legal access to heroin and its subsequent effects. For instance, legalization eases access and therefore decreases the risk for users to experience involuntary infrequent heroin use due to unavailability on the black market. In a similar vein, legal access to heroin decreases the danger of incarceration due to acquisitive crime. 
+Besides polydrug use (PDU), rapid changes in heroin tolerance is among the most common individual level causes for an overdose. Reasons for such tolerance changes incarceration (I), relapse following drug treatment (R) or infrequent heroin use (IHU). All of those variables interact with legal access to heroin and its subsequent effects. For instance, legalization eases access and therefore decreases the risk for users to experience involuntary infrequent heroin use due to unavailability on the black market. In a similar vein, legal access to heroin decreases the danger of incarceration due to acquisitive crime. 
+
+#### Notes and Quotes
 
 "The proximal causes and individual factors associated with heroin-related overdose (HOD) are well known [1,3,6,7]. Heroin overdoses are frequently due to polydrug use (PDU), specifically when heroin is combined with central nervous system depressants such as alcohol and benzodiazepines that contribute to respiratory failure [8]. A lack of experience (LOE) in heroin use and rapid changes in tolerance due to incarceration (I), relapse following drug treatment (R) or infrequent heroin use (IHU) have been linked to higher rates of overdose [6,9–11]"
 (The relationship between US heroin market dynamics and heroin-related overdose, 1992–2008)
@@ -179,9 +187,11 @@ ggdag_status(assumed_relationship_IF) +
 
 ```
 
-## Risk environment
+#### Risk Environment
 
-Legalization has not only an effect on the risk of criminal justice risk in the form  a potentially high-risk incarceration. Limiting legal access to heroin furthermore can be linked to "higher levels of drug law enforcement (DLE) [that in turn] have been linked to increased risk of overdose deaths [16]. The hypothesized agent of action is that increased criminal justice risk (CJR) associated with drug use leads to specific behaviors, e.g. not calling for emergency help (i.e. calling 911 in the United States) following a witnessed overdose, which increase individual harm associated with drug use [17]." It becomes clear that "risk environment represents a number of structural components that moderate the relationship between individual factors and injection drug users’ (IDUs’) health" that should be considered when estimating mechanisms and effects of legalizing heroin. An additional aspect to be taken into account regards risk environment related variables such as the access to naloxone distribution (ND) or safe injection rooms (SIR) that can be mediated by legality in their effectiveness in decreasing the likelihood of heroin overdoses to be fatal.  
+Legalization (L) has not only an effect on the risk of criminal justice risk (JCR) in the forma potentially high-risk incarceration. Limiting legal access to heroin furthermore can be linked to "higher levels of drug law enforcement (DLE) [that in turn] have been linked to increased risk of overdose deaths [16]. The hypothesized agent of action is that increased criminal justice risk (JCR) associated with drug use leads to specific behaviors, e.g. not calling for emergency help (i.e. calling 911 in the United States) following a witnessed overdose, which increase individual harm associated with drug use [17]." It becomes clear that "risk environment represents a number of structural components that moderate the relationship between individual factors and injection drug users’ (IDUs’) health" that should be considered when estimating mechanisms and effects of legalizing heroin. An additional aspect to be taken into account regards risk environment related variables such as the access to naloxone distribution (ND) or safe injection rooms (SIR) that can be mediated by legality in their effectiveness in decreasing the likelihood of heroin overdoses to be fatal.  
+
+#### Notes and Quotes
 
 "The risk environment represents a number of structural components that moderate the relationship between individual factors and injection drug users’ (IDUs’) health. For example, higher levels of drug law enforcement (DLE) have been linked to increased risk of overdose deaths [16]. The hypothesized agent of action is that increased criminal justice risk (CJR) associated with drug use leads to specific behaviors, e.g. not calling for emergency help (i.e. calling 911 in the United States) following a witnessed overdose, which increase individual harm associated with drug use [17]. Other structural factors such as needle exchange (NE), naloxone distribution (ND), safe injection rooms (SIR) and the availability of methadone treatment (MT) can reduce the risk of overdose or harm associated with overdose in areas where these services are available"
 (The relationship between US heroin market dynamics and heroin-related overdose, 1992–2008)
@@ -246,9 +256,11 @@ ggdag_status(assumed_relationship_RE) +
 ```
 
 
-## Social Causes
+#### Social Causes
 
-Lastly, social causes need to be taken into account, as they might very well change the way the factors indicated above affect overdose and fatality risks. Being affected by poverty, homelessness and other forms of social exclusion - all listed as risk factors for drug overdose - can reinforce each other. In addition, they interact with risk environment related factors such as increased criminal justice risk or the related individual factor incarceration. In a similar vein, members of the indicated social groups are at higher risk of involuntary infrequent heroin access. All social causes indicated play a role as mediators, colliders, and/or confounders in the way legalization would affect fatal overdose cases. 
+Lastly, social causes need to be taken into account, as they might very well change the way the factors indicated above affect overdose and fatality risks. Being affected by poverty (EB), homelessness (HL) and other forms of social exclusion (OSE) - all listed as risk factors for drug overdose - can reinforce each other. In addition, they interact with risk environment related factors (RE) such as increased criminal justice risk or the related individual factor (IF) incarceration. In a similar vein, members of the indicated social groups are at higher risk of involuntary infrequent heroin access. All social causes indicated play a role as mediators, colliders, and/or confounders in the way legalization (L) would affect fatal overdose cases (DID). 
+
+#### Notes and Quotes
 
 "Moving upstream, social causes such as poverty (EB), homelessness (HL), sexual minority status (SM) or other forms of social exclusion (OSE) have also been linked to increased risk of drug overdose [12–15]"
 (The relationship between US heroin market dynamics and heroin-related overdose, 1992–2008)
@@ -305,15 +317,19 @@ ggdag_status(assumed_relationship_SC) +
 # OSE = Other Forms of Social Exclusion
 
 ```
-## Estimants: What do we estimate?
+## Reflecting on Estimants
 
 The paper´s title claims to provide inside on the question whether "legalizing illicit opioids [would] reduce overdose fatalities". This would mean to estimate the total effect a change on legality had on the number of heroin induced overdose deaths. As previously pointed out, the effect of legalizing heroin on the cases of fatal overdoses involves numerous additional factors that mediate, confound or collide the effect that need to be carefully considered when estimating the overall effect. Looking at the dags above however, it becomes clear that at least in the first part of the paper, this is not in fact the estimant explored. Instead, the authors decided to focus on what they claim to be the two most commonly assumed drivers for decreasing fatality rates, purity and drug composition. What they investigate is the indirect effect of legalizing heroin on fatal overdoses  mediated by these two variables. They furthermore limit the initially stated general claim to "provision in the manner of substances such as alcohol, where use is by the individual in a setting of their choosing [20]. Known dose and purity do not protect and any such provision, we argue, would not reduce overdose rates". They thereby exclude any model that includes institutional settings like supervised consumption rooms. Combining these limitations, the study therefore examines the potential impact of legalization, without additional framework measures, on changes in the purity and adulterant levels, and how these changes would affect the immediate mortality rate due to overdose. Contrary to the authors' claim, the research does not focus on the overall effect of legalizing heroin on the number of fatal overdoses.
 
-## Problems with the Data
+## Reflecting on Data
 
 Previously, the assumed mechanisms, estimants and theoretical foundations have been reviewed. One of the main insights of this discussion was the much more limited estimant than suggested by the paper´s title. While we furthermore pointed out a number of problematic simplifications, in the subsequent section we would like to turn to a different aspect of the article in question. Even if we were to accept the theoretical premises discussed above, the data the authors based the estimation of these effects deserves attention. For the first part of the paper, the researchers quote from a number of different sources. As many of the data analyses their conclusions are based on are not within our reach, reviewing the quality of this research is hard to evaluate. A common feature of these sources, however, seems to be the predominant focus on cases of Drug Induced Deaths and cases of overdoses. Focusing only on those cases means to exclusively consider cases that, in the simplified DAGs above, have one specific value in the binary variables Heroin Overdose (HOD) and Drug Induced Death (DID). Estimating the (total, direct, or indirect) effect of legalizing heroin, however, would define the population as the population of heroin addicts. Using a data base that primarily or exclusively contains HOD or DID cases is likely to result in a sample that does not represent this target population.
 
 Another issue might arise when comparing different subgroups of heroin users. When the different variables discussed interact with the effect of legalization in the way described above, it becomes impossible to precisely estimate the effect strength of the targeted estimant. This becomes clear when the authors aim to discuss, for instance, the effect of different levels of heroin purity on the tolerance of heroin users after periods of opioid abstinence in comparison to heroin users without abstinence. If subgroups are not considered for controlling, effect estimates might be screwed. As seen above, abstinence and its effect on tolerance are entangled in a complex way with several individual risk factors, as well as the risk and social environment. The authors indeed acknowledge this limitation when they state that there "are situations in which tolerance plays a more significant role, specifically after periods of opioid abstinence, such as the period immediately following imprisonment release or detoxification." As they do not control for such variables in their limited model however, their data analysis seems to be not sufficiently fine-grained to estimate the difference of effect strength; and they are limited to the statement that "such cases constitute a small minority, and it is questionable in the absence of opioid tolerance whether or not variations in purity are of relevance, as the risk of death is so high."
+
+The issue becomes even more complicated, since being a member of a socially excluded group (OSE) means being at higher risk of an overdose, but also increases the fear of Drug Law Enforcement (DLE) as well as the criminal justice risk (JSR) and subsequent incarceration. In turn, this means that the effect of legalization can be expected to be mediated by all those variables: the change in behavior might be different for socially excluded groups as legalization has a different effect on their criminal justice risk. Additionally, their risk of sudden decreases in tolerance after incarceration could be expected to change their risk of a fatal overdose to a different extent than subgroups that are less affected by these risk factors in the first place.  The point is that, in addition to the their simplified DAG, there are subsequent problematic implications for the data referenced in the article, as it becomes unclear to what extent the data at the researchers´ hand is fitted to control for such distinct subgroup effects. 
+
+#### Notes and Quotes
 
 - Strong focus on DID (Drug Induced Death) cases, might be similarly screwed like police violence data:
 
@@ -327,19 +343,33 @@ Another issue might arise when comparing different subgroups of heroin users. Wh
 
 "Polydrug toxicity has emerged as the major factor in heroin overdoses. The overwhelming majority of opioid overdoses, both fatal and non-fatal, involve multiple CNS depressants, most notably alcohol and benzodiazepines [12–15,24–27,38,39]. Co-administration of other depressant drugs can substantially increase the likelihood of a fatal outcome, due to the combined respiratory depressant effects of these drugs."
 
-## Problems with the natural Experiment
+## Reflecting on the Natural Experiment
+
+In addition to their discussion of purity and drug composition of heroin in the first section, the authors furthermore suggest to consider the opioid crisis in the US as a natural experiment to estimate the effects of legalizing heroin on the number of fatal overdoses. According to the researchers, legal opioids could be considered as real-world examples of widespread licit opioid provision in order to investigate how legal heroin distribution would play out. Their approach, however, seems to be mostly rely on the assumption that "the toxicological profile of these deaths [fatal overdoses caused by licit opioids] is consistent with that of heroin". Such a direct comparison of the overall effect across all groups as it seems to be implied here for users of licit and illicit opioids would only make sense if the user groups of both types of substances would equally composed. As soon as one assumes different user groups for legal pain killers and heroin, transferring assumptions about effect strength and type from one setting to the other would require knowledge about the relationships of the variables within the respective DAGs.
+
+The authors are not completely clear about the methodological considerations behind their comparisons. But it seems reasonable to assume that the user group of heroin and licit opiods are not identical in terms of the overdose risk factors outlined in the DAGs above. While the researchers claim comparability between one group of typical users with high risks of fatal licit opioid overdoses and typical heroin fatalities, the common trade they point out is "the concomitant use of other CNS depressants".  Without further investigation of the numerous additional interaction variables, such claims have to be treated with caution. These suspicions are further strengthened by the authors´ description of the second group of common fatal overdose users, namely an older group of chronic pain patients; this group can be expected to be distinct from the typical overdose heroin user. Taking these two objections together, it becomes once again clear that comparing the two populations of opioid users is hardly justifiable without further controlling for additional variables. 
+
+In addition to these concerns regarding the theoretical backing and population composition, one has to carefully consider the sample composition for the natural experiment. Similar like in the paper´s first section, it seems like the researchers primarily sample data from (fatal) overdoses. Thus, they only take into account cases that have a specific value for the respective binary variables. Thus, the sample at their hands is not representative of all licit opioid users but strongly biased towards users with (fatal) overdoses. 
+
+Lastly, it is worth noting that the claimed natural experiment setting does not take into account what triggers the increase in numbers. Those opioids in question were legally available before there increased use, that legality is *not* the (only) variable that changed in the DAG. Instead, the authors state that as "prescription rates have increased, however, poisonings have increased dramatically". This puts a different focus on the crucial factors then a binary legislation variable as suggested in the paper´s title. The idea behind the natural experiment seemed to have been to simulate a counter-factual situation where a change in legalization from illegal to legal would change overdose numbers. Again, this would make it all the more crucial to ensure that all relevant variables are included in the assumed DAG in order to ensure both identification of crucial factors and transferability between subgroups. 
+
+#### Notes and Quotes
+
+-- first distinct group: Probably not relevant for heroin comparison, older group of chronic pain patients
+
+-- second distinct group: possibly similar to heroin group, but finding is that "the toxicology mirrors those of other opioids, including heroin, in overwhelmingly involving the concomitant use of other CNS depressants". However, we do not see the ratio of users to users that fatally overdose, we only see users that fatally overdose. Heroin users that combine opioids and other substances.
+
+"Importantly, the toxicological profile of these deaths is consistent with that of heroin and other opioid deaths. Wider use has resulted in more deaths."
+
+"Who is dying from these prescribed drugs? Cases comprise two distinct groups: established opioid-using IDUs, a sizable proportion of whom who inject the tablets, and a larger, older group of chronic pain patients [49,53,55,56,58,60]. Interestingly, we see again that the age profile of cases is skewed heavily towards older users, rather than young, inexperienced (and possibly low opioid-tolerant) individuals. In as many as half of cases the drug was not prescribed to the decedent [49,53,55,56]. Importantly, the toxicology mirrors those of other opioids, including heroin, in overwhelmingly involving the concomitant use of other CNS depressants, most notably benzodiazepines, alcohol and other opioids [52,53,55,56,58,60]."
+
+
+- Important flaw: Experiment does not take into account what triggers the increase in numbers. Those opioids were legal before, that is *not* the (only) variable that changed. To what extent even comparable?   
 
 - aims to treat heroin like any other  opioid in order to be able to perceive real-world example of widespread licit opioid provision
 
 "The situation observed in the pharmaceutical opioids epidemic is of direct relevance to our discussion, as it provides a real-world example of widespread licit opioid provision. We have widely available, labelled, legal opioids of known concentration, free of impurities. As prescription rates have increased, however, poisonings have increased dramatically. Of particular interest, a large proportion of these deaths are established heroin users who have begun to use this more readily available opioid. They are now injecting a licit opioid (albeit often not prescribed to them), rather than illicit heroin. Despite the fact that the drug is an impurity-free pharmaceutical of known dosage, toxicity deaths among this group have risen dramatically."
 
-- first distinct group: Probably not relevant for heroin comparison, older group of chronic pain patients
-
-- second distinct group: possibly similar to heroin group, but finding is that "the toxicology mirrors those of other opioids, including heroin, in overwhelmingly involving the concomitant use of other CNS depressants". However, we do not see the ratio of users to users that fatally overdose, we only see users that fatally overdose. Heroin users that combine opioids and other substances.
-
-"Importantly, the toxicological profile of these deaths is consistent with that of heroin and other opioid deaths. Wider use has resulted in more deaths."
-
-"Who is dying from these prescribed drugs? Cases comprise two distinct groups: established opioid-using IDUs, a sizable proportion of whom who inject the tablets, and a larger, older group of chronic pain patients [49,53,55,56,58,60]. Interestingly, we see again that the age profile of cases is skewed heavily towards older users, rather than young, inexperienced (and possibly low opioid-tolerant) individuals. In as many as half of cases the drug was not prescribed to the decedent [49,53,55,56]. Importantly, the toxicology mirrors those of other opioids, including heroin, in overwhelmingly involving the concomitant use of other CNS depressants, most notably benzodiazepines, alcohol and other opioids [52,53,55,56,58,60]."
 
 - authors proposing: (re-)defining intervention: not dose and purity through legality
 - increase rates due to wider availability and more widespread, unsupervised use of these drugs
@@ -384,13 +414,3 @@ ggdag_status(commonly_assumed_relationship) +
   guides(color = "none")  # Turn off legend
 
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

@@ -366,9 +366,20 @@ library(ggdag)</code></pre>
 ## 
 ##     filter</code></pre>
 <pre class="r"><code>library(ggplot2)</code></pre>
-<div id="dag-as-claimed-to-be-tested-by-shane-darke-michael-farrell" class="section level2">
-<h2>DAG as claimed to be tested by Shane Darke &amp; Michael
-Farrell</h2>
+<div id="reflecting-on-theoretical-foundations" class="section level2">
+<h2>Reflecting on Theoretical Foundations</h2>
+<div id="dag-as-claimed-to-be-tested-by-darke-farrell" class="section level3">
+<h3>DAG as claimed to be tested by Darke &amp; Farrell</h3>
+<p>In the first part of the paper, the authors claim to check “the
+extent to which any change in legal access to heroin would affect
+overdose rates”. According to them, it is sufficient to investigate
+“drug purity and drug impurity as major causes of overdose” in order to
+falsify this claim. Before turning to the natural experiment analysis
+proposed by the authors in the second half of their paper, we will take
+a closer look to the claimed causal mechanism of the paper. For this
+purpose, we visualize their model in the following DAG:</p>
+<div id="notes-and-quotes" class="section level4">
+<h4>Notes and Quotes</h4>
 <p>“In the community setting, where most drug use occurs, the extent to
 which any change in legal access to heroin would affect overdose rates
 depends upon the validity of the assumptions underpinning the argument:
@@ -416,21 +427,18 @@ ggdag_status(simplified_tested_relationship) +
 # HOD = Heroin Overdose
 # DID = Drug Induced Death </code></pre>
 </div>
-<div id="high-level-dags-george-unick-daniel-rosenblum-sarah-mars-daniel-ciccarone" class="section level2">
-<h2>High Level DAGS (George Unick, Daniel Rosenblum, Sarah Mars &amp;
-Daniel Ciccarone)</h2>
-<p>Unick, Rosenblum, Mars and Ciccarone review literature on causes for
-high risk of heroin overdoses. They distinguish three types of variables
-that should be considered and that are subsequently added in the
-simplified DAG developed above:</p>
-<div id="individual-factors-if" class="section level3">
-<h3>1. Individual Factors (IF)</h3>
 </div>
-<div id="risk-environment-re" class="section level3">
-<h3>2. Risk Environment (RE)</h3>
-</div>
-<div id="social-environment-se" class="section level3">
-<h3>3. Social Environment (SE)</h3>
+<div id="high-level-dags-unick-rosenblum-mars-ciccarone" class="section level3">
+<h3>High Level DAGS (Unick, Rosenblum, Mars &amp; Ciccarone)</h3>
+<p>In a paper on a related topic, Unick, et al. reviewed literature on
+causes for high risk of heroin overdoses. They distinguish three types
+of variables that should be considered and that are subsequently added
+in the simplified DAG developed above:</p>
+<ol style="list-style-type: decimal">
+<li><p>Individual Factors (IF)</p></li>
+<li><p>Risk Environment (RE)</p></li>
+<li><p>Social Environment (SE)</p></li>
+</ol>
 <p>Looking at the DAGs below, it becomes clear that estimating effects
 of heroin legalization is an extremely complicated goal. Individual
 Factors, Social and Risk Environment behave as mediators, colliders and
@@ -478,19 +486,21 @@ ggdag_status(simplified_assumed_relationship) +
 # NFNM = Non-Fatal Near Misses
 # HOD = Heroin Overdose
 # DID = Drug Induced Death </code></pre>
+<div id="proximal-causes-and-individual-factors" class="section level4">
+<h4>Proximal causes and individual factors</h4>
+<p>Besides polydrug use (PDU), rapid changes in heroin tolerance is
+among the most common individual level causes for an overdose. Reasons
+for such tolerance changes incarceration (I), relapse following drug
+treatment (R) or infrequent heroin use (IHU). All of those variables
+interact with legal access to heroin and its subsequent effects. For
+instance, legalization eases access and therefore decreases the risk for
+users to experience involuntary infrequent heroin use due to
+unavailability on the black market. In a similar vein, legal access to
+heroin decreases the danger of incarceration due to acquisitive
+crime.</p>
 </div>
-</div>
-<div id="proximal-causes-and-individual-factors" class="section level2">
-<h2>Proximal causes and individual factors</h2>
-<p>Besides polydrug use, rapid changes in heroin tolerance is among the
-most common individual level causes for an overdose. Reasons for such
-tolerance changes incarceration (I), relapse following drug treatment
-(R) or infrequent heroin use (IHU). All of those variables interact with
-legal access to heroin and its subsequent effects. For instance,
-legalization eases access and therefore decreases the risk for users to
-experience involuntary infrequent heroin use due to unavailability on
-the black market. In a similar vein, legal access to heroin decreases
-the danger of incarceration due to acquisitive crime.</p>
+<div id="notes-and-quotes-1" class="section level4">
+<h4>Notes and Quotes</h4>
 <p>“The proximal causes and individual factors associated with
 heroin-related overdose (HOD) are well known [1,3,6,7]. Heroin overdoses
 are frequently due to polydrug use (PDU), specifically when heroin is
@@ -551,25 +561,29 @@ ggdag_status(assumed_relationship_IF) +
 # IHU = Infrequent Heroin Use
 # R = Relapse Following Drug Treatment</code></pre>
 </div>
-<div id="risk-environment" class="section level2">
-<h2>Risk environment</h2>
-<p>Legalization has not only an effect on the risk of criminal justice
-risk in the form a potentially high-risk incarceration. Limiting legal
-access to heroin furthermore can be linked to “higher levels of drug law
-enforcement (DLE) [that in turn] have been linked to increased risk of
-overdose deaths [16]. The hypothesized agent of action is that increased
-criminal justice risk (CJR) associated with drug use leads to specific
-behaviors, e.g. not calling for emergency help (i.e. calling 911 in the
-United States) following a witnessed overdose, which increase individual
-harm associated with drug use [17].” It becomes clear that “risk
-environment represents a number of structural components that moderate
-the relationship between individual factors and injection drug users’
-(IDUs’) health” that should be considered when estimating mechanisms and
-effects of legalizing heroin. An additional aspect to be taken into
-account regards risk environment related variables such as the access to
-naloxone distribution (ND) or safe injection rooms (SIR) that can be
-mediated by legality in their effectiveness in decreasing the likelihood
-of heroin overdoses to be fatal.</p>
+<div id="risk-environment" class="section level4">
+<h4>Risk Environment</h4>
+<p>Legalization (L) has not only an effect on the risk of criminal
+justice risk (JCR) in the forma potentially high-risk incarceration.
+Limiting legal access to heroin furthermore can be linked to “higher
+levels of drug law enforcement (DLE) [that in turn] have been linked to
+increased risk of overdose deaths [16]. The hypothesized agent of action
+is that increased criminal justice risk (JCR) associated with drug use
+leads to specific behaviors, e.g. not calling for emergency help
+(i.e. calling 911 in the United States) following a witnessed overdose,
+which increase individual harm associated with drug use [17].” It
+becomes clear that “risk environment represents a number of structural
+components that moderate the relationship between individual factors and
+injection drug users’ (IDUs’) health” that should be considered when
+estimating mechanisms and effects of legalizing heroin. An additional
+aspect to be taken into account regards risk environment related
+variables such as the access to naloxone distribution (ND) or safe
+injection rooms (SIR) that can be mediated by legality in their
+effectiveness in decreasing the likelihood of heroin overdoses to be
+fatal.</p>
+</div>
+<div id="notes-and-quotes-2" class="section level4">
+<h4>Notes and Quotes</h4>
 <p>“The risk environment represents a number of structural components
 that moderate the relationship between individual factors and injection
 drug users’ (IDUs’) health. For example, higher levels of drug law
@@ -642,19 +656,22 @@ ggdag_status(assumed_relationship_RE) +
 # MT = Methadone Treatment 
 # SIR = Safe Injection Rooms</code></pre>
 </div>
-<div id="social-causes" class="section level2">
-<h2>Social Causes</h2>
+<div id="social-causes" class="section level4">
+<h4>Social Causes</h4>
 <p>Lastly, social causes need to be taken into account, as they might
 very well change the way the factors indicated above affect overdose and
-fatality risks. Being affected by poverty, homelessness and other forms
-of social exclusion - all listed as risk factors for drug overdose - can
-reinforce each other. In addition, they interact with risk environment
-related factors such as increased criminal justice risk or the related
-individual factor incarceration. In a similar vein, members of the
-indicated social groups are at higher risk of involuntary infrequent
-heroin access. All social causes indicated play a role as mediators,
-colliders, and/or confounders in the way legalization would affect fatal
-overdose cases.</p>
+fatality risks. Being affected by poverty (EB), homelessness (HL) and
+other forms of social exclusion (OSE) - all listed as risk factors for
+drug overdose - can reinforce each other. In addition, they interact
+with risk environment related factors (RE) such as increased criminal
+justice risk or the related individual factor (IF) incarceration. In a
+similar vein, members of the indicated social groups are at higher risk
+of involuntary infrequent heroin access. All social causes indicated
+play a role as mediators, colliders, and/or confounders in the way
+legalization (L) would affect fatal overdose cases (DID).</p>
+</div>
+<div id="notes-and-quotes-3" class="section level4">
+<h4>Notes and Quotes</h4>
 <p>“Moving upstream, social causes such as poverty (EB), homelessness
 (HL), sexual minority status (SM) or other forms of social exclusion
 (OSE) have also been linked to increased risk of drug overdose [12–15]”
@@ -710,8 +727,10 @@ ggdag_status(assumed_relationship_SC) +
 # SM = Sexual Minority Status
 # OSE = Other Forms of Social Exclusion</code></pre>
 </div>
-<div id="estimants-what-do-we-estimate" class="section level2">
-<h2>Estimants: What do we estimate?</h2>
+</div>
+</div>
+<div id="reflecting-on-estimants" class="section level2">
+<h2>Reflecting on Estimants</h2>
 <p>The paper´s title claims to provide inside on the question whether
 “legalizing illicit opioids [would] reduce overdose fatalities”. This
 would mean to estimate the total effect a change on legality had on the
@@ -738,8 +757,8 @@ mortality rate due to overdose. Contrary to the authors’ claim, the
 research does not focus on the overall effect of legalizing heroin on
 the number of fatal overdoses.</p>
 </div>
-<div id="problems-with-the-data" class="section level2">
-<h2>Problems with the Data</h2>
+<div id="reflecting-on-data" class="section level2">
+<h2>Reflecting on Data</h2>
 <p>Previously, the assumed mechanisms, estimants and theoretical
 foundations have been reviewed. One of the main insights of this
 discussion was the much more limited estimant than suggested by the
@@ -782,6 +801,23 @@ strength; and they are limited to the statement that “such cases
 constitute a small minority, and it is questionable in the absence of
 opioid tolerance whether or not variations in purity are of relevance,
 as the risk of death is so high.”</p>
+<p>The issue becomes even more complicated, since being a member of a
+socially excluded group (OSE) means being at higher risk of an overdose,
+but also increases the fear of Drug Law Enforcement (DLE) as well as the
+criminal justice risk (JSR) and subsequent incarceration. In turn, this
+means that the effect of legalization can be expected to be mediated by
+all those variables: the change in behavior might be different for
+socially excluded groups as legalization has a different effect on their
+criminal justice risk. Additionally, their risk of sudden decreases in
+tolerance after incarceration could be expected to change their risk of
+a fatal overdose to a different extent than subgroups that are less
+affected by these risk factors in the first place. The point is that, in
+addition to the their simplified DAG, there are subsequent problematic
+implications for the data referenced in the article, as it becomes
+unclear to what extent the data at the researchers´ hand is fitted to
+control for such distinct subgroup effects.</p>
+<div id="notes-and-quotes-4" class="section level4">
+<h4>Notes and Quotes</h4>
 <ul>
 <li>Strong focus on DID (Drug Induced Death) cases, might be similarly
 screwed like police violence data:</li>
@@ -818,33 +854,74 @@ depressant drugs can substantially increase the likelihood of a fatal
 outcome, due to the combined respiratory depressant effects of these
 drugs.”</p>
 </div>
-<div id="problems-with-the-natural-experiment" class="section level2">
-<h2>Problems with the natural Experiment</h2>
-<ul>
-<li>aims to treat heroin like any other opioid in order to be able to
-perceive real-world example of widespread licit opioid provision</li>
-</ul>
-<p>“The situation observed in the pharmaceutical opioids epidemic is of
-direct relevance to our discussion, as it provides a real-world example
-of widespread licit opioid provision. We have widely available,
-labelled, legal opioids of known concentration, free of impurities. As
-prescription rates have increased, however, poisonings have increased
-dramatically. Of particular interest, a large proportion of these deaths
-are established heroin users who have begun to use this more readily
-available opioid. They are now injecting a licit opioid (albeit often
-not prescribed to them), rather than illicit heroin. Despite the fact
-that the drug is an impurity-free pharmaceutical of known dosage,
-toxicity deaths among this group have risen dramatically.”</p>
-<ul>
-<li><p>first distinct group: Probably not relevant for heroin
-comparison, older group of chronic pain patients</p></li>
-<li><p>second distinct group: possibly similar to heroin group, but
+</div>
+<div id="reflecting-on-the-natural-experiment" class="section level2">
+<h2>Reflecting on the Natural Experiment</h2>
+<p>In addition to their discussion of purity and drug composition of
+heroin in the first section, the authors furthermore suggest to consider
+the opioid crisis in the US as a natural experiment to estimate the
+effects of legalizing heroin on the number of fatal overdoses. According
+to the researchers, legal opioids could be considered as real-world
+examples of widespread licit opioid provision in order to investigate
+how legal heroin distribution would play out. Their approach, however,
+seems to be mostly rely on the assumption that “the toxicological
+profile of these deaths [fatal overdoses caused by licit opioids] is
+consistent with that of heroin”. Such a direct comparison of the overall
+effect across all groups as it seems to be implied here for users of
+licit and illicit opioids would only make sense if the user groups of
+both types of substances would equally composed. As soon as one assumes
+different user groups for legal pain killers and heroin, transferring
+assumptions about effect strength and type from one setting to the other
+would require knowledge about the relationships of the variables within
+the respective DAGs.</p>
+<p>The authors are not completely clear about the methodological
+considerations behind their comparisons. But it seems reasonable to
+assume that the user group of heroin and licit opiods are not identical
+in terms of the overdose risk factors outlined in the DAGs above. While
+the researchers claim comparability between one group of typical users
+with high risks of fatal licit opioid overdoses and typical heroin
+fatalities, the common trade they point out is “the concomitant use of
+other CNS depressants”. Without further investigation of the numerous
+additional interaction variables, such claims have to be treated with
+caution. These suspicions are further strengthened by the authors´
+description of the second group of common fatal overdose users, namely
+an older group of chronic pain patients; this group can be expected to
+be distinct from the typical overdose heroin user. Taking these two
+objections together, it becomes once again clear that comparing the two
+populations of opioid users is hardly justifiable without further
+controlling for additional variables.</p>
+<p>In addition to these concerns regarding the theoretical backing and
+population composition, one has to carefully consider the sample
+composition for the natural experiment. Similar like in the paper´s
+first section, it seems like the researchers primarily sample data from
+(fatal) overdoses. Thus, they only take into account cases that have a
+specific value for the respective binary variables. Thus, the sample at
+their hands is not representative of all licit opioid users but strongly
+biased towards users with (fatal) overdoses.</p>
+<p>Lastly, it is worth noting that the claimed natural experiment
+setting does not take into account what triggers the increase in
+numbers. Those opioids in question were legally available before there
+increased use, that legality is <em>not</em> the (only) variable that
+changed in the DAG. Instead, the authors state that as “prescription
+rates have increased, however, poisonings have increased dramatically”.
+This puts a different focus on the crucial factors then a binary
+legislation variable as suggested in the paper´s title. The idea behind
+the natural experiment seemed to have been to simulate a counter-factual
+situation where a change in legalization from illegal to legal would
+change overdose numbers. Again, this would make it all the more crucial
+to ensure that all relevant variables are included in the assumed DAG in
+order to ensure both identification of crucial factors and
+transferability between subgroups.</p>
+<div id="notes-and-quotes-5" class="section level4">
+<h4>Notes and Quotes</h4>
+<p>– first distinct group: Probably not relevant for heroin comparison,
+older group of chronic pain patients</p>
+<p>– second distinct group: possibly similar to heroin group, but
 finding is that “the toxicology mirrors those of other opioids,
 including heroin, in overwhelmingly involving the concomitant use of
 other CNS depressants”. However, we do not see the ratio of users to
 users that fatally overdose, we only see users that fatally overdose.
-Heroin users that combine opioids and other substances.</p></li>
-</ul>
+Heroin users that combine opioids and other substances.</p>
 <p>“Importantly, the toxicological profile of these deaths is consistent
 with that of heroin and other opioid deaths. Wider use has resulted in
 more deaths.”</p>
@@ -859,6 +936,26 @@ as many as half of cases the drug was not prescribed to the decedent
 opioids, including heroin, in overwhelmingly involving the concomitant
 use of other CNS depressants, most notably benzodiazepines, alcohol and
 other opioids [52,53,55,56,58,60].”</p>
+<ul>
+<li><p>Important flaw: Experiment does not take into account what
+triggers the increase in numbers. Those opioids were legal before, that
+is <em>not</em> the (only) variable that changed. To what extent even
+comparable?</p></li>
+<li><p>aims to treat heroin like any other opioid in order to be able to
+perceive real-world example of widespread licit opioid
+provision</p></li>
+</ul>
+<p>“The situation observed in the pharmaceutical opioids epidemic is of
+direct relevance to our discussion, as it provides a real-world example
+of widespread licit opioid provision. We have widely available,
+labelled, legal opioids of known concentration, free of impurities. As
+prescription rates have increased, however, poisonings have increased
+dramatically. Of particular interest, a large proportion of these deaths
+are established heroin users who have begun to use this more readily
+available opioid. They are now injecting a licit opioid (albeit often
+not prescribed to them), rather than illicit heroin. Despite the fact
+that the drug is an impurity-free pharmaceutical of known dosage,
+toxicity deaths among this group have risen dramatically.”</p>
 <ul>
 <li>authors proposing: (re-)defining intervention: not dose and purity
 through legality</li>
@@ -883,6 +980,7 @@ with treatment more broadly [3]. Importantly, if an adverse reaction
 occurs, there is medical support present. It is arguable, however,
 whether this would be comprehensively provided in most
 jurisdictions.”</p>
+</div>
 </div>
 <div id="please-ignore-code-snippets-below" class="section level2">
 <h2>Please ignore code snippets below</h2>
@@ -925,14 +1023,6 @@ ggdag_status(commonly_assumed_relationship) +
 <pre><code>## Warning: Removed 1 rows containing missing values (`geom_dag_point()`).</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (`geom_dag_text()`).</code></pre>
 <p><img src="data:image/png;base64,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" width="672" /></p>
-</div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="data:image/png;base64,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" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the
-code chunk to prevent printing of the R code that generated the
-plot.</p>
 </div>
 
 
