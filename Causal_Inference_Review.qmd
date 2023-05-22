@@ -65,14 +65,14 @@ ggdag_status(simplified_tested_relationship) +
 
 ```
 
-| Symbol | Meaning               |
-|--------|-----------------------|
-| L      | Legality              |
-| OP     | Opioid Provision      |
-| P      | Purity                |
-| DC     | Drug Components       |
-| HOD    | Heroin Overdose       |
-| DID    | Drug Induced Death    |
+| Symbol | Meaning            |
+|--------|--------------------|
+| L      | Legality           |
+| OP     | Opioid Provision   |
+| P      | Purity             |
+| DC     | Drug Components    |
+| HOD    | Heroin Overdose    |
+| DID    | Drug Induced Death |
 
 ## 2.2 High Level DAGS (Unick, Rosenblum, Mars & Ciccarone)
 
@@ -416,7 +416,13 @@ MSMs estimate causal effects in observational studies, adjusting for confounders
 
 # 7. Extension of Research
 
-Future research should embrace a multi-dimensional approach, including variables like healthcare access, drug potency, polydrug use prevalence, and socio-economic factors, in addition to the legal status of heroin. Such an approach, enhanced with causal models like Directed Acyclic Graphs (DAGs), will offer a more holistic understanding of heroin use and associated risks. In tandem, sensitivity analysis ought to be conducted to scrutinize the impact of confounding variables, thereby assessing the robustness of the findings. Moreover, proposed interventions, such as providing injectable heroin in treatment settings, must be rigorously tested for effectiveness, considering potential adverse reactions, and logistical and ethical implications.
+## 7.1 Multidimensional Approach and Robustness of Findings:
+Future research should adopt a comprehensive, multidimensional approach, incorporating variables such as healthcare access, drug potency, polydrug use prevalence, and socio-economic factors, along with the legal status of heroin. Coupling this with causal models like Directed Acyclic Graphs (DAGs) will yield a more holistic understanding of heroin use and the associated risks. Sensitivity analysis should also be employed to scrutinize the robustness of the findings, ensuring that the results are reliable despite potential confounding variables.
+
+## 7.2 Reconsidering Propensity Score Matching and Counterfactual Scenario:
+While propensity score matching has been a common technique for estimating causal effects in observational studies, it's crucial to reassess its efficacy and reliability. Possible shortcomings and biases introduced by propensity score matching should be critically examined, and alternative approaches to dealing with confounding should be explored.
+
+Furthermore, future studies could consider design-based methods such as instrumental variable methods. These methods can provide more credible causal estimates by effectively creating counterfactual scenarios, thus increasing the validity of research findings and providing a more robust basis for policy implications.
 
 # Conclusion
 
