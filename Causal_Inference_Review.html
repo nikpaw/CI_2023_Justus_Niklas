@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,7 +18,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
 </style>
@@ -60,7 +60,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-  
     
   </div>
   
@@ -69,29 +68,30 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="cell">
 <div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'ggdag'</code></pre>
+<pre><code>Warning: Paket 'ggdag' wurde unter R Version 4.2.3 erstellt</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
+<pre><code>
+Attache Paket: 'ggdag'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Das folgende Objekt ist maskiert 'package:stats':
 
     filter</code></pre>
 </div>
 </div>
 <section id="introduction" class="level1">
 <h1>1. Introduction</h1>
-<p>The opioid crisis continues to pose a significant public health challenge, with a high number of overdose fatalities. A proposed strategy to address this crisis is the legalization of illicit opioids. This paper critically reviews and evaluates the study by Shane Darke and Michael Farrell titled “Would legalizing illicit opioids reduce overdose fatalities? Implications from a natural experiment,” focusing on causal inference.</p>
-<p>Darke and Farrell’s study explores the impact of changes in drug purity and composition on overdose rates, aiming to assess the potential effects of legalizing heroin. However, this review highlights the need for a more rigorous causal analysis.</p>
-<p>By examining the study’s theoretical foundations, this review emphasizes the intricate causal mechanisms linking heroin legality, overdose rates, and confounding factors. It underscores the significance of considering individual and social environments, along with associated risk factors, when estimating the effects of heroin legalization on overdose fatalities.</p>
-<p>The data used in the study primarily relies on Drug Induced Deaths (DID) and overdose cases, raising concerns about potential bias and the limited representation of the target population. Furthermore, subgroup effects are overlooked, and adequate control for confounding variables is lacking.</p>
-<p>To address these limitations, this review suggests potential remedies, including the use of quasi-experimental methods, counterfactual scenario analysis, and the incorporation of comprehensive variables in the analysis. These approaches can enhance our understanding of the complex relationship between heroin legality and overdose fatalities, facilitating evidence-based policies to combat the opioid crisis more effectively.</p>
+<p>The opioid crisis, with its high number of overdose fatalities, poses a significant public health challenge. A proposed strategy to address this crisis is the legalization of illicit opioids. This paper critically reviews Darke and Farrell’s study “Would legalizing illicit opioids reduce overdose fatalities? Implications from a natural experiment,” from a causal inference perspective.</p>
+<p>Darke and Farrell explore the impact of changes in drug purity and composition on overdose rates, aiming to assess the potential effects of legalizing heroin. However, this review highlights the need for a more rigorous causal analysis. By examining the study’s theoretical foundations, this review emphasizes the intricate causal mechanisms linking heroin legality, overdose rates, and confounding factors. It underscores the significance of associated risk factors when estimating the effects of heroin legalization on overdose fatalities. The data used by Darke and Farrell primarily rely on Drug Induced Deaths (DID) and overdose cases, raising concerns about potential bias and the limited representation of the target population. Furthermore, the study overlooks subgroup effects, and there is a lack of adequate control for confounding variables. Similar concerns are to be raised with regard to their proposed natural experiment.</p>
+<p>To address these limitations, this review suggests potential remedies, including the use of quasi-experimental methods, counterfactual scenario analysis, and the incorporation of comprehensive variables in the analysis. These approaches can enhance our understanding of the complex relationship between heroin legality and overdose fatalities, facilitating the development of evidence-based policies to combat the opioid crisis more effectively.</p>
 <p>In conclusion, this review underscores the importance of a robust causal analysis when investigating the potential impact of legalizing illicit opioids on overdose fatalities. By addressing the study’s limitations and proposing methodological improvements, we can deepen our comprehension of the opioid crisis and inform more effective interventions to mitigate overdose rates.</p>
 </section>
 <section id="reflecting-on-theoretical-foundations" class="level1">
 <h1>2. Reflecting on Theoretical Foundations</h1>
 <section id="dag-as-claimed-to-be-tested-by-darke-farrell" class="level2">
 <h2 class="anchored" data-anchor-id="dag-as-claimed-to-be-tested-by-darke-farrell">2.1 DAG as claimed to be tested by Darke &amp; Farrell</h2>
-<p>In the first part of the paper, the authors claim to check “the extent to which any change in legal access to heroin would affect overdose rates”. According to them, it is sufficient to investigate “drug purity and drug impurity as major causes of overdose” in order to falsify this claim. Before turning to the natural experiment analysis proposed by the authors in the second half of their paper, we will take a closer look to the claimed causal mechanism of the paper. For this purpose, we visualize their model in the following DAG:</p>
+<p>In the first part of the paper, the authors claim to examine ‘the extent to which any change in legal access to heroin would affect overdose rates’. According to them, investigating ‘drug purity and drug impurity as major causes of overdose’ is sufficient to falsify this claim. Before delving into the natural experiment analysis proposed by the authors in the second half of their paper, we will closely examine the claimed causal mechanism of the study. For this purpose, we visualize their model in the following DAG:</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Causal_Inference_Review_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
@@ -134,13 +134,13 @@ Attaching package: 'ggdag'</code></pre>
 </section>
 <section id="high-level-dags-unick-rosenblum-mars-ciccarone" class="level2">
 <h2 class="anchored" data-anchor-id="high-level-dags-unick-rosenblum-mars-ciccarone">2.2 High Level DAGS (Unick, Rosenblum, Mars &amp; Ciccarone)</h2>
-<p>In a paper on a related topic, Unick, et al.&nbsp;reviewed literature on causes for high risk of heroin overdoses. They distinguish three types of high risk variables that are subsequently added in the simplified DAG developed above:</p>
+<p>In a paper on a related topic, Unick, et al.&nbsp;reviewed literature on causes for high risk of heroin overdoses. They distinguish three types of high risk variables that are subsequently added to the simplified DAG developed above:</p>
 <ol type="1">
 <li><p>Individual Factors (IF)</p></li>
 <li><p>Risk Environment (RE)</p></li>
 <li><p>Social Environment (SE)</p></li>
 </ol>
-<p>Looking at the DAGs below, it becomes clear that effect estimation of heroin legalization is an extremely complicated goal. Individual Factors, Social and Risk Environment behave as mediators, colliders and confounders. In the DAGs below, we included 15 additional variables all of which are well established risk factors for overdosing, we briefly discuss a selection of those relationships below.</p>
+<p>By examining the DAGs below, it becomes clear that estimating the effects of heroin legalization is an extremely complex task. Individual Factors, Social, and Risk Environment behave as mediators, colliders and confounders. In the DAGs below, we included 15 additional variables all of which are well established risk factors for overdosing, we briefly discuss a selection of these relationships below.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Causal_Inference_Review_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
@@ -198,7 +198,7 @@ Attaching package: 'ggdag'</code></pre>
 </table>
 <section id="proximal-causes-and-individual-factors" class="level4">
 <h4 class="anchored" data-anchor-id="proximal-causes-and-individual-factors">Proximal causes and individual factors</h4>
-<p>Besides polydrug use (PDU), rapid changes in heroin tolerance is among the most common individual level causes for an overdose. Reasons for such tolerance changes incarceration (I), relapse following drug treatment (R) or infrequent heroin use (IHU). All of those variables interact with legal access to heroin and its subsequent effects. For instance, legalization eases access and therefore decreases the risk for users to experience involuntary infrequent heroin use due to unavailability on the black market. In a similar vein, legal access to heroin decreases the danger of incarceration due to acquisitive crime.</p>
+<p>Besides polydrug use (PDU), rapid changes in heroin tolerance are among the most common individual level causes for an overdose. Reasons for such tolerance changes include incarceration (I), relapse following drug treatment (R), or infrequent heroin use (IHU). All of these variables interact with legal access to heroin and its subsequent effects. For instance, legalization eases access and therefore reduces the risk for users to experience involuntary infrequent heroin use due to unreliable availability on the black market. Similarly, legal access to heroin reduces the risk of incarceration due to acquisitive crime.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Causal_Inference_Review_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
@@ -229,46 +229,42 @@ Attaching package: 'ggdag'</code></pre>
 <td>Social Environment</td>
 </tr>
 <tr class="odd">
-<td>IF</td>
-<td>Individual Factors</td>
-</tr>
-<tr class="even">
 <td>P</td>
 <td>Purity</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DC</td>
 <td>Drug Components</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>NFNM</td>
 <td>Non-Fatal Near Misses</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>HOD</td>
 <td>Heroin Overdose</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DID</td>
 <td>Drug Induced Death</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>PDU</td>
 <td>Polydrug Use</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>LOE</td>
 <td>Lack of Experience</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>I</td>
 <td>Incarceration</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>IHU</td>
 <td>Infrequent Heroin Use</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>R</td>
 <td>Relapse Following Drug Treatment</td>
 </tr>
@@ -277,7 +273,7 @@ Attaching package: 'ggdag'</code></pre>
 </section>
 <section id="risk-environment" class="level4">
 <h4 class="anchored" data-anchor-id="risk-environment">Risk Environment</h4>
-<p>Legalization (L) has not only an effect on the risk of criminal justice risk (JCR) via potentially high-risk incarceration. Limiting legal access to heroin is also linked to “higher levels of drug law enforcement (DLE) [that in turn] have been linked to increased risk of overdose deaths [16] […] increased criminal justice risk (JCR) associated with drug use leads to specific behaviors, e.g.&nbsp;not calling for emergency help [(i.e.&nbsp;calling 911 in the United States) […] following a witnessed overdose, which increase individual harm associated with drug use [17].” It becomes clear that “risk environment represents a number of structural components that moderate the relationship between individual factors and injection drug users’ (IDUs’) health” that should be considered when discussing heroin legalization. Lastly, risk environment related variables such as the access to naloxone distribution (ND) or safe injection rooms (SIR) can be mediated by legality in their effectiveness in decreasing the likelihood of heroin overdoses to be fatal.</p>
+<p>Legalization (L) has not only an effect on criminal justice risk (JCR) via potentially high-risk incarceration. Limiting legal access to heroin is also linked to ‘higher levels of drug law enforcement (DLE) [that in turn] have been linked to increased risk of overdose deaths [16] […] increased criminal justice risk (JCR) associated with drug use leads to specific behaviors, e.g.&nbsp;not calling for emergency help [(i.e.&nbsp;calling 911 in the United States) […] following a witnessed overdose, which increase individual harm associated with drug use [17].’ It becomes clear that ‘risk environment represents a number of structural components that moderate the relationship between individual factors and injection drug users’ (IDUs’) health’ that should be considered when discussing heroin legalization. Lastly, variables related to the risk environment, such as access to naloxone distribution (ND) or safe injection rooms (SIR), can have their effectiveness in reducing the likelihood of fatal heroin overdoses mediated by legality.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 1 rows containing missing values (`geom_dag_point()`).</code></pre>
@@ -306,58 +302,54 @@ Attaching package: 'ggdag'</code></pre>
 <td>Opioid Provision</td>
 </tr>
 <tr class="odd">
-<td>RE</td>
-<td>Risk Environment</td>
-</tr>
-<tr class="even">
 <td>SE</td>
 <td>Social Environment</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>IF</td>
 <td>Individual Factors</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>P</td>
 <td>Purity</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DC</td>
 <td>Drug Components</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>NFNM</td>
 <td>Non-Fatal Near Misses</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>HOD</td>
 <td>Heroin Overdose</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DID</td>
 <td>Drug Induced Death</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DLE</td>
 <td>Drug Law Enforcement</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>CJR</td>
 <td>Criminal Justice Risk</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>NE</td>
 <td>Needle Exchange</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>ND</td>
 <td>Naloxone Distribution</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MT</td>
 <td>Methadone Treatment</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>SIR</td>
 <td>Safe Injection Rooms</td>
 </tr>
@@ -366,7 +358,7 @@ Attaching package: 'ggdag'</code></pre>
 </section>
 <section id="social-causes" class="level4">
 <h4 class="anchored" data-anchor-id="social-causes">Social Causes</h4>
-<p>Lastly, social causes need to be taken into account, as they might very well change the way the factors indicated above affect overdose and fatality risks. Being affected by poverty (EB), homelessness (HL) and other forms of social exclusion (OSE) - all listed as risk factors for drug overdose - can reinforce each other. In addition, they interact with risk environment related factors (RE) such as increased criminal justice risk or the related individual factor (IF) incarceration. In a similar vein, members of the indicated social groups are at higher risk of involuntary infrequent heroin access. All social causes indicated play a role as mediators, colliders, and/or confounders in the way legalization (L) would affect fatal overdose cases (DID).</p>
+<p>Finally, social causes need to be taken into account, as they can significantly influence the impact of the factors mentioned above on overdose and fatality risks. Experiencing poverty (EB), homelessness (HL), and other forms of social exclusion (OSE) - all listed as risk factors for drug overdose - can mutually reinforce one another. Furthermore, these social causes interact with risk environment-related factors (RE), such as increased criminal justice risk, or the related individual factor (IF) of incarceration. Similarly, individuals belonging to the mentioned social groups face an increased risk of involuntary infrequent heroin access. All the indicated social causes act as mediators, colliders, and/or confounders in how legalization (L) would impact fatal overdose cases (DID).</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Causal_Inference_Review_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
@@ -393,46 +385,42 @@ Attaching package: 'ggdag'</code></pre>
 <td>Risk Environment</td>
 </tr>
 <tr class="even">
-<td>SE</td>
-<td>Social Environment</td>
-</tr>
-<tr class="odd">
 <td>IF</td>
 <td>Individual Factors</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>P</td>
 <td>Purity</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>DC</td>
 <td>Drug Components</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>NFNM</td>
 <td>Non-Fatal Near Misses</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>HOD</td>
 <td>Heroin Overdose</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>DID</td>
 <td>Drug Induced Death</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>EB</td>
 <td>Economic Background</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>HL</td>
 <td>Homelessness</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>SM</td>
 <td>Sexual Minority Status</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>OSE</td>
 <td>Other Forms of Social Exclusion</td>
 </tr>
@@ -443,18 +431,18 @@ Attaching package: 'ggdag'</code></pre>
 </section>
 <section id="reflecting-on-estimants" class="level1">
 <h1>3. Reflecting on Estimants</h1>
-<p>The paper´s title claims to provide inside on the question whether “legalizing illicit opioids [would] reduce overdose fatalities”. This would mean to estimate the total effect a change on legality had on the number of heroin induced overdose deaths. As previously pointed out, the effect of legalizing heroin on the cases of fatal overdoses involves numerous factors that mediate, confound or collide and would need careful consideration when estimating the overall effect. Looking at the dags above however, it becomes clear that at least in the first part of the paper, this is not in fact the estimant explored. Instead, the authors decided to focus on what they claim to be the two most commonly assumed drivers for decreasing fatality rates, purity and drug composition. What they investigate is the indirect effect of legalizing heroin on fatal overdoses mediated by these two variables, focusing exclusively on the arrows from Purity and Drug Components to Drug Induced Death. They furthermore limit the initially stated general claim to “provision in the manner of substances such as alcohol,” thereby excluding institutional settings like supervised consumption rooms. Combining these limitations, the study therefore aims to estimate the potential impact of legalization, without additional framework measures, on changes in the purity and adulterant levels, and how these changes would affect the immediate mortality rate due to overdose. Contrary to the authors’ claim, the research does not focus on the overall effect of legalizing heroin on fatal overdoses.</p>
+<p>The paper’s title claims to provide inside on the question whether ‘legalizing illicit opioids [would] reduce overdose fatalities’. This would mean to estimate the total effect a change on legality had on the number of heroin induced overdose deaths. As previously pointed out, the effect of legalizing heroin on the cases of fatal overdoses involves numerous factors that mediate, confound or collide and would need careful consideration when estimating the overall effect. Looking at the dags above however, it becomes clear that at least in the first part of the paper, this is not in fact the estimant explored. Instead, the authors decided to focus on what they claim to be the two most commonly assumed drivers for decreasing fatality rates - purity and drug composition. What they investigate is the indirect effect of legalizing heroin on fatal overdoses mediated by these two variables, focusing solely on the arrows from Purity and Drug Components to Drug Induced Death. Furthermore, they limit the initially stated general claim to ‘provision in the manner of substances such as alcohol,’ thereby excluding institutional settings like supervised consumption rooms. Combining these limitations, the study therefore aims to estimate the potential impact of legalization, without additional framework measures, on changes in the purity and adulterant levels, and how these changes would affect the immediate mortality rate due to overdose. Contrary to the authors’ claim, the research does not primarily focus on the overall effect of legalizing heroin on fatal overdoses.</p>
 </section>
 <section id="reflecting-on-data" class="level1">
 <h1>4. Reflecting on Data</h1>
-<p>The discussion above discussed a number of problematic simplifications and pointed out that the paper´s estimant is much more limited than the title suggested. In the subsequent section, we would like to turn to a different aspect, namely the data the authors based the estimation of these effects on. For the first part of the paper, the researchers quote from a number of different sources. While many of the data analyses their conclusions are beyond our reach, a common feature of these sources seems to be the focus on cases of (fatal) overdoses. Focusing only on those cases means to exclusively consider cases that, in the simplified DAGs above, have one specific value in the binary variables Heroin Overdose (HOD) and Drug Induced Death (DID). Estimating the (total, direct, or indirect) effect of legalizing heroin, however, would define the population as the population of heroin addicts. Using data primarily containing HOD or DID cases is likely to result in a sample that does not represent this target population, which needs to be taken into account.</p>
-<p>Another issue might arise when comparing different subgroups of heroin users. When the different variables discussed interact with the effect of legalization as described above, it becomes impossible to precisely estimate the effect strength of the targeted estimant. This becomes clear when the authors aim to discuss, for instance, the effect of different levels of heroin purity on the tolerance of heroin users after periods of opioid abstinence in comparison to heroin users without abstinence. If subgroups are not considered for controlling, effect estimates might be screwed. Abstinence and its effect on tolerance are entangled in a complex way with numerous other risk factors. The authors indeed acknowledge that there “are situations in which tolerance plays a more significant role, specifically after periods of opioid abstinence”. As they do not control for such variables in their limited model however, their analysis is insufficiently fine-grained to estimate the difference of effect strength; and they simply state that “such cases constitute a small minority, and it is questionable in the absence of opioid tolerance whether or not variations in purity are of relevance, as the risk of death is so high.”</p>
-<p>The issue becomes even more complicated, since being a member of a socially excluded group (OSE) means being at higher risk of an overdose, but also increases the risk and fear of Drug Law Enforcement (DLE) and incarceration. Thus, legalization can be expected to be mediated by all those variables: the behavioral change might be different across groups as legalization has a different effect on their criminal justice risk, similar effects could be expected with regard to incarceration. The point is that, in addition to the their simplified DAG, there are subsequent problematic implications for the data referenced in the article, as it becomes unclear to what extent it is fitted to control for such distinct subgroup effects.</p>
+<p>The preceding discussion highlighted several problematic simplifications and underscored that the paper’s estimand is considerably more limited than implied by its title. In the subsequent section, we would like to turn to a different aspect, namely the data the authors based the estimation of these effects on. In the initial section of the paper, the researchers cite various sources, many of which are beyond our scope. However, a common feature of the data analyses leading to their conclusions seems to be the focus on cases of (fatal) overdoses. By solely focusing on those cases, they exclusively consider cases that, in the simplified DAGs above, correspond to a specific value in the binary variables Heroin Overdose (HOD) and Drug-Induced Death (DID). However, estimating the (total, direct, or indirect) effect of legalizing heroin would require defining the population as the population of heroin addicts. Utilizing data primarily consisting of HOD or DID cases is likely to yield a sample that does not adequately represent this target population, and this consideration needs to be taken into account.</p>
+<p>Another issue may arise when comparing different subgroups of heroin users. When the different variables discussed interact with the effect of legalization as described above, it becomes impossible to precisely estimate the effect strength of the targeted estimant. This becomes evident when the authors attempt to discuss, for instance, the impact of varying levels of heroin purity on the tolerance of heroin users who have experienced periods of opioid abstinence, in comparison to heroin users without such abstinence. If subgroups are not taken into account for controlling, effect estimates may be biased. Abstinence and its effect on tolerance are are intricately intertwined with numerous other risk factors. The authors indeed acknowledge that there ‘are situations in which tolerance plays a more significant role, specifically after periods of opioid abstinence’. As they do not control for such variables in their limited model however, their analysis is insufficiently fine-grained to estimate the difference of effect strength; and they simply state that ‘such cases constitute a small minority, and it is questionable in the absence of opioid tolerance whether or not variations in purity are of relevance, as the risk of death is so high.’</p>
+<p>The issue becomes even more complex since being a member of a socially excluded group (OSE) implies a higher risk of overdose, but also increases the risk and fear of Drug Law Enforcement (DLE) and incarceration. Hence, legalization can be anticipated to be mediated by all of these variables. Behavioral changes might differ across groups since the effect of legalization on their criminal justice risk varies. Similar effects can be expected concerning incarceration. The key point is that, in addition to their simplified DAG, there are further problematic implications regarding the data referenced in the article. It becomes unclear to what extent the data is suitable for controlling such distinct subgroup effects.</p>
 </section>
 <section id="reflecting-on-the-natural-experiment" class="level1">
 <h1>5. Reflecting on the Natural Experiment</h1>
-<p>In addition to their initial discussion of purity and drug composition, the authors furthermore suggest to consider the US opioid crisis a natural experiment to estimate the effects of legalizing heroin on the number of fatal overdoses. Legal opioids would be real-world examples of widespread licit opioid provision in order to investigate how legal heroin distribution would play out. Their approach, however, seems to be mostly rely on the assumption that “the toxicological profile of these deaths [fatal overdoses caused by licit opioids] is consistent with that of heroin”. Such a direct comparison of the overall effect across groups as seemingly implied here would only make sense if the user groups of different substances would equally composed. As soon as one assumes different user groups for legal pain killers and heroin, transferring assumptions about effects would require knowledge about the relationships of the variables within the respective DAGs.</p>
-<p>The authors are not completely clear about the methodological considerations behind their comparisons. It seems reasonable to assume that the user group of heroin and licit opiods are not identical in terms of overdose risk factors outlined in the DAGs above. While the researchers claim comparability between one group of typical users with high risks of fatal licit opioid overdoses and typical heroin fatalities, the common trade they point out is “concomitant use”. Without further investigation of the numerous additional interaction variables, such claims have to be treated with caution. These suspicions are further strengthened by the authors´ description of the second group of common fatal overdose users, namely older chronic pain patients; this group can be expected to be distinct from the typical overdose heroin user. It becomes once again clear that comparing the two populations of opioid users is hardly justifiable without further controlling.</p>
+<p>In addition to their initial discussion of purity and drug composition, the authors furthermore suggest to consider the US opioid crisis a natural experiment to estimate the effects of legalizing heroin on the number of fatal overdoses. Legal opioids would be real-world examples of widespread licit opioid provision, allowing investigation into how the distribution of legal heroin would unfold. Their approach, however, seems to be mostly rely on the assumption that ‘the toxicological profile of these deaths [fatal overdoses caused by licit opioids] is consistent with that of heroin’. However, a direct comparison of the overall effect across groups, as seemingly implied here, would only be valid if the user groups of different substances were equally composed. Once different user groups for legal painkillers and heroin are assumed, transferring assumptions about effects would necessitate understanding the relationships of variables within their respective DAGs.</p>
+<p>The authors are not completely clear about the methodological considerations behind their comparisons. It seems reasonable to assume that the user group of heroin and licit opioids are not identical in terms of overdose risk factors outlined in the DAGs above. While the researchers claim comparability between one group of typical users with high risks of fatal licit opioid overdoses and typical heroin fatalities, the common trade they point out is “concomitant use”. Without further investigation of the numerous additional interaction variables, such claims have to be treated with caution. These suspicions are further strengthened by the authors´ description of the second group of common fatal overdose users, namely older chronic pain patients; this group can be expected to be distinct from the typical overdose heroin user. It becomes once again clear that comparing the two populations of opioid users is hardly justifiable without further controlling.</p>
 <p>In addition to these concerns regarding the theoretical backing and population composition, one has to carefully consider the sample composition for the natural experiment. Similar like in the paper´s first section, the researchers seem to primarily sample data from (fatal) overdoses. Thus, they only take into account cases that have a specific value for the respective binary variables. Thus, the sample at their hands is not representative of all licit opioid users but strongly biased towards users with (fatal) overdoses.</p>
 <p>Lastly, it is worth noting that the claimed natural experiment setting does not take into account what triggers the increase in overdose fatalities Those opioids in question were legally available before there increased use, that legality is not the (only) variable that changed in the DAG. Instead, the authors state that as “prescription rates have increased, however, poisonings have increased dramatically”. This puts a different focus on the crucial factors then a binary legislation variable as suggested in the paper´s title. The idea behind the natural experiment seemed to have been to simulate a counter-factual situation where a change in legalization from illegal to legal would change overdose numbers. Again, this would make it all the more crucial to ensure that all relevant variables are included in the assumed DAG in order to ensure both identification of crucial factors and transferability between subgroups.</p>
 </section>
@@ -525,23 +513,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -553,24 +527,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -606,128 +563,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
