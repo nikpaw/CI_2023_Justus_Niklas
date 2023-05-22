@@ -448,6 +448,10 @@ To strengthen their analysis, the authors could employ quasi-experimental method
 
 A detailed counterfactual scenario analysis could enrich the study. One example might involve using data from jurisdictions like Portugal, where drug use has been decriminalized. By comparing overdose rates before and after this policy change and adjusting for other relevant factors, the authors could model the potential impact of similar policies in other contexts. Another counterfactual could involve synthesizing a control group via methods like propensity score matching, simulating a parallel universe in which opioid policy remained unchanged.
 
+## 7.3 Enhancing Transferability through Representativeness
+
+To enhance the transferability of findings between non-identical populations, it is crucial to ensure the representativeness of the data used. This can be achieved by selecting diverse data sources and methods that capture the variations in demographic characteristics, geographic regions, and contextual factors. Incorporating representativeness as a key criterion in the analysis will strengthen the generalizability and applicability of the research findings.
+
 # 8. Extension of Research
 
 Future research should embrace a multi-dimensional approach, including variables like healthcare access, drug potency, polydrug use prevalence, and socio-economic factors, in addition to the legal status of heroin. Such an approach, enhanced with causal models like Directed Acyclic Graphs (DAGs), will offer a more holistic understanding of heroin use and associated risks. In tandem, sensitivity analysis ought to be conducted to scrutinize the impact of confounding variables, thereby assessing the robustness of the findings. Moreover, proposed interventions, such as providing injectable heroin in treatment settings, must be rigorously tested for effectiveness, considering potential adverse reactions, and logistical and ethical implications.
