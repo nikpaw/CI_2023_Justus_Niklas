@@ -448,9 +448,11 @@ To strengthen their analysis, the authors could employ quasi-experimental method
 
 A detailed counterfactual scenario analysis could enrich the study. One example might involve using data from jurisdictions like Portugal, where drug use has been decriminalized. By comparing overdose rates before and after this policy change and adjusting for other relevant factors, the authors could model the potential impact of similar policies in other contexts. Another counterfactual could involve synthesizing a control group via methods like propensity score matching, simulating a parallel universe in which opioid policy remained unchanged.
 
-## 7.3 Enhancing Transferability through Representativeness
+## 7.3 Applying a Framework for Dynamic Causal Inference
 
-To enhance the transferability of findings between non-identical populations, it is crucial to ensure the representativeness of the data used. This can be achieved by selecting diverse data sources and methods that capture the variations in demographic characteristics, geographic regions, and contextual factors. Incorporating representativeness as a key criterion in the analysis will strengthen the generalizability and applicability of the research findings.
+Time-varying confounders such as risk environment factors and social causes require a dynamic approach. One way is to apply Matthew Blackwell's framework for dynamic causal inference. This framework employs marginal structural models (MSMs) and inverse probability of treatment weighting (IPTW) to estimate causal effects of interventions considering time-varying confounders.
+
+MSMs estimate causal effects in observational studies, adjusting for confounders affected by previous treatment. IPTW corrects for treatment-selection bias, creating a 'pseudo-population' independent of measured confounders. Applying this to the study involves constructing MSMs capturing dynamic relationships between heroin use, social, economic and legal status, overdose rates, and other time-varying confounders. Using IPTW, the model weighs each observation by its probability of receiving treatment given observed confounders, enabling accurate estimates of the causal effects of legalizing heroin.
 
 # 8. Extension of Research
 
