@@ -1,7 +1,8 @@
 ---
 title: "Causal Inference Review"
+subtitle: "'Would legalizing illicit opioids reduce overdose fatalities? Implications from a natural experiment' <br> by Shane Darke and Michael Farrell"
 author: "Niklas Pawelzik, Justus v. Samson-Himmelstjerna"
-format: html
+format: pdf
 editor: visual
 ---
 
