@@ -5,10 +5,13 @@ format: html
 editor: visual
 ---
 
-```{r echo=FALSE}
-library(dagitty)
-library(ggdag)
-library(ggplot2)
+```{r echo=FALSE }
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+suppressPackageStartupMessages({
+  library(dagitty)
+  library(ggdag)
+  library(ggplot2)
+})
 ```
 
 # 1. Introduction
